@@ -11,47 +11,47 @@ namespace Padel_Kaverit.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PeopleController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly PadelContext _context;
 
-        public PeopleController(PadelContext context)
+        public UsersController(PadelContext context)
         {
             _context = context;
         }
 
-        // GET: api/People
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Person>>> GetPersons()
+        public async Task<ActionResult<IEnumerable<User>>> GetPersons()
         {
             return await _context.Persons.ToListAsync();
         }
 
-        // GET: api/People/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Person>> GetPerson(long id)
+        public async Task<ActionResult<User>> GetUser(long id)
         {
-            var person = await _context.Persons.FindAsync(id);
+            var user = await _context.Persons.FindAsync(id);
 
-            if (person == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return person;
+            return user;
         }
 
-        // PUT: api/People/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPerson(long id, Person person)
+        public async Task<IActionResult> PutUser(long id, User user)
         {
-            if (id != person.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(person).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace Padel_Kaverit.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -72,34 +72,34 @@ namespace Padel_Kaverit.Controllers
             return NoContent();
         }
 
-        // POST: api/People
+        // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Person>> PostPerson(Person person)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Persons.Add(person);
+            _context.Persons.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPerson", new { id = person.Id }, person);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/People/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePerson(long id)
+        public async Task<IActionResult> DeleteUser(long id)
         {
-            var person = await _context.Persons.FindAsync(id);
-            if (person == null)
+            var user = await _context.Persons.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Persons.Remove(person);
+            _context.Persons.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PersonExists(long id)
+        private bool UserExists(long id)
         {
             return _context.Persons.Any(e => e.Id == id);
         }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Models
 {
-    public class Person
+    public class User
     {
         public long Id { get; set; }
         public string Name { get; set; }

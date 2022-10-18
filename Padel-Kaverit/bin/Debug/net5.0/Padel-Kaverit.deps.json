@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Padel-Kaverit/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "5.0.17",
           "Microsoft.EntityFrameworkCore.InMemory": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.17",
