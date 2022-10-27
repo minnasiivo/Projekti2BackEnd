@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Padel_Kaverit.Models;
+using Padel_Kaverit.Services;
 
 namespace Padel_Kaverit.Controllers
 {
@@ -13,25 +14,28 @@ namespace Padel_Kaverit.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly PadelContext _context;
+        //private readonly PadelContext _context;
+        private readonly IUserService _service;
+         
 
-        public UsersController(PadelContext context)
+        public UsersController(IUserService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetPersons()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Persons.ToListAsync();
+            return Ok(await _service.GetAllUsersAsync());
+
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        [HttpGet("{name}")]
+        public async Task<ActionResult<UserDTO>> GetUser(string name)
         {
-            var user = await _context.Persons.FindAsync(id);
+            var user = await _service.GetUserAsync(name);
 
             if (user == null)
             {
@@ -51,7 +55,7 @@ namespace Padel_Kaverit.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+          /*  _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -68,6 +72,7 @@ namespace Padel_Kaverit.Controllers
                     throw;
                 }
             }
+          */
 
             return NoContent();
         }
@@ -75,33 +80,24 @@ namespace Padel_Kaverit.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<UserDTO>> PostUser(User user)
         {
-            _context.Persons.Add(user);
-            await _context.SaveChangesAsync();
+            UserDTO newUser = await _service.CreateUserAsync(user);
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { id = newUser.Id }, newUser);
         }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
-            var user = await _context.Persons.FindAsync(id);
-            if (user == null)
+            if (await _service.DeleteUserAsync(id)) ;
             {
-                return NotFound();
+                return Ok("Deleted");
             }
-
-            _context.Persons.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return NotFound();
         }
 
-        private bool UserExists(long id)
-        {
-            return _context.Persons.Any(e => e.Id == id);
-        }
+
     }
 }

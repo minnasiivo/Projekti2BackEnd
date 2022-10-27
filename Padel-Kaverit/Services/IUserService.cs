@@ -1,11 +1,21 @@
-﻿using System;
+﻿using Padel_Kaverit.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Services
 {
-    public class IUserService
+    public interface IUserService
     {
+        public Task<UserDTO> CreateUserAsync(User user);
+        public Task<IEnumerable<UserDTO>> GetAllUsersAsync();
+        public Task<UserDTO> GetUserAsync(string name);
+        public Task<UserDTO> GetUserAsync(long id);
+        public Task<UserDTO> UpdateUserAsync(UserDTO user);
+
+        public Task<Boolean> DeleteUserAsync(long id);
+
+
     }
 }

@@ -10,23 +10,24 @@ namespace Padel_Kaverit.Repositories
     {
         private readonly PadelContext _context;
 
-        public UserRepository()
+        public UserRepository(PadelContext context)
         {
+            _context = context;
         }
 
-        public Task<User> addUserAsync(User user)
+        public async Task<User> AddUserAsync(User user)
         {
-            // _context.User.Add(user);
+            _context.Users.Add(user);
 
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (Exception)
-            //{
-                
-            //}
-           return null;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+            return user;
         }
 
         public Task<IEnumerable<User>> GetAllUsersAsync()
@@ -39,7 +40,7 @@ namespace Padel_Kaverit.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<User> UptadeUserAsync(User user)
+        public Task<User> UpdateUserAsync(User user)
         {
           //  _context.Users.Update(user);
 
@@ -59,6 +60,9 @@ namespace Padel_Kaverit.Repositories
             throw new NotImplementedException();
         }
 
-       
+        public Task<bool> DeleteUserAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,11 +7,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Padel_Kaverit.Models
 {
     public class UserDTO
-    {public long Id { get; set; }
-        [Required]
-        [MinLength (4)]
-
-        [MaxLength(30)]
+    {
+        public long Id { get; set; }
+        
         public String Name { get; set; }
         
         public bool IsAdmin { get; set; }
