@@ -20,6 +20,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
+
+
 namespace Padel_Kaverit
 {
     public class Startup
@@ -30,6 +32,8 @@ namespace Padel_Kaverit
         }
 
         public IConfiguration Configuration { get; }
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -45,16 +49,17 @@ namespace Padel_Kaverit
 
             });
 
-            services.AddControllers();
+
+         services.AddControllers();
             services.AddDbContext<PadelContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PadelDB")));
             //services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             //services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
            services.AddScoped<IUserService, UserServices>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-         
 
 
+            /*
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -65,11 +70,11 @@ namespace Padel_Kaverit
                 });
                 var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
-            });
+            });*/
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PadelContext db)
+            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PadelContext db)
         {
             if (env.IsDevelopment())
             {
@@ -80,8 +85,6 @@ namespace Padel_Kaverit
 
             db.Database.EnsureCreated();
             app.UseHttpsRedirection();
-
-
 
             app.UseRouting();
             app.UseCors();
@@ -96,3 +99,6 @@ namespace Padel_Kaverit
         }
     }
 }
+
+
+ 
