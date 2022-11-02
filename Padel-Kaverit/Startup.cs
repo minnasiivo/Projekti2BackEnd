@@ -34,13 +34,6 @@ namespace Padel_Kaverit
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddDbContext<PadelContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PadelDB")));
-            //services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-            //services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
-           // services.AddScoped<IUserService, UserServices>();
-            services.AddScoped<IUserRepository, UserRepository>();
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -52,6 +45,15 @@ namespace Padel_Kaverit
 
             });
 
+            services.AddControllers();
+            services.AddDbContext<PadelContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PadelDB")));
+            //services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            //services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+           services.AddScoped<IUserService, UserServices>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+         
+
 
             services.AddSwaggerGen(options =>
             {
@@ -59,7 +61,7 @@ namespace Padel_Kaverit
                 {
                     Version = "v1",
                     Title = "Padel API",
-                    Description = "An ASP.NET Core Web API for padel tinder"
+                    Description = "An ASP.NET Web API for managing Padel profile"
                 });
                 var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
@@ -84,8 +86,8 @@ namespace Padel_Kaverit
             app.UseRouting();
             app.UseCors();
             //app.UseMiddleware<ApiKeyMiddleware>();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+           // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
