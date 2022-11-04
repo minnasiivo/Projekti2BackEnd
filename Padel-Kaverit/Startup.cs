@@ -57,9 +57,7 @@ namespace Padel_Kaverit
            services.AddScoped<IUserService, UserServices>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-
-
-            /*
+            
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -68,9 +66,11 @@ namespace Padel_Kaverit
                     Title = "Padel API",
                     Description = "An ASP.NET Web API for managing Padel profile"
                 });
-                var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
-            });*/
+               // var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+               // options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
+            });
+            
+            
         }
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,9 +88,10 @@ namespace Padel_Kaverit
 
             app.UseRouting();
             app.UseCors();
+            
             //app.UseMiddleware<ApiKeyMiddleware>();
-            //app.UseAuthentication();
-           // app.UseAuthorization();
+           app.UseAuthentication();
+           app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

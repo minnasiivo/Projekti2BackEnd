@@ -1,4 +1,5 @@
-﻿using Padel_Kaverit.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +31,10 @@ namespace Padel_Kaverit.Repositories
             return user;
         }
 
-        public Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Users.ToListAsync();
+
         }
 
         public Task<User> GetUserAsync(string id)
@@ -62,7 +64,9 @@ namespace Padel_Kaverit.Repositories
 
         public Task<bool> DeleteUserAsync(User user)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            Console.WriteLine("HEIP");
+            return null;
         }
     }
 }
