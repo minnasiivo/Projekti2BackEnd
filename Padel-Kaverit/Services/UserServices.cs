@@ -37,9 +37,11 @@ namespace Padel_Kaverit.Services
 
             User newUser = new User
             {
-                Name = user.Name,
-                //FirstName = user.FirstName,
-                //LastName = user.LastName,
+               // Name = user.Name,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+
                 //Salt = salt,
                 Password = user.Password,
                 IsAdmin = user.IsAdmin
@@ -91,9 +93,9 @@ namespace Padel_Kaverit.Services
 
         public async Task<UserDTO> UpdateUserAsync(UserDTO user)
         {
-            User dbUser = await _repository.GetUserAsync(user.Name);
-           // dbUser.FirstName = user.FirstName;
-           // dbUser.LastName = user.LastName;
+            User dbUser = await _repository.GetUserAsync(user.FirstName);
+            dbUser.FirstName = user.FirstName;
+            dbUser.LastName = user.LastName;
 
             User updateUser = await _repository.UpdateUserAsync(dbUser);
             if (updateUser == null)
@@ -111,9 +113,10 @@ namespace Padel_Kaverit.Services
         private User DTOToUser(UserDTO user, String password)
         {
             User newUser = new User();
-            newUser.Name = user.Name;
-            //newUser.FirstName = user.FirstName;
-           // newUser.LastName = user.LastName;
+            //newUser.Name = user.Name;
+            newUser.FirstName = user.FirstName;
+            newUser.LastName = user.LastName;
+            newUser.UserName = user.UserName;
             newUser.Password = password;
 
             return newUser;
@@ -125,10 +128,11 @@ namespace Padel_Kaverit.Services
         {
             UserDTO dto = new UserDTO();
             dto.Id = user.Id;
-            dto.Name = user.Name;
-            //dto.FirstName = user.FirstName;
-           // dto.LastName = user.LastName;
+            //dto.Name = user.Name;
+            dto.FirstName = user.FirstName;
+            dto.LastName = user.LastName;
             dto.IsAdmin = user.IsAdmin;
+            dto.UserName = user.UserName;
 
             return dto;
 

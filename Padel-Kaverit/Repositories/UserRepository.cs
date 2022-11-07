@@ -68,5 +68,10 @@ namespace Padel_Kaverit.Repositories
             Console.WriteLine("HEIP");
             return null;
         }
+
+        public Task<User> GetUserAsync(object name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

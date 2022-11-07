@@ -18,8 +18,6 @@ namespace Padel_Kaverit.Repositories
 
         public Task<User> GetUserAsync(long id);
         public Task<Boolean> DeleteUserAsync(User user);
-
-
-
+        Task<User> GetUserAsync(object name);
     }
 }

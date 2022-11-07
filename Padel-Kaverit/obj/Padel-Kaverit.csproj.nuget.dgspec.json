@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\minna\\source\\repos\\Padel-Kaverit\\Padel-Kaverit\\Padel-Kaverit.csproj": {}
+    "C:\\Users\\auror\\Documents\\GitHub\\Projekti2BackEnd\\Padel-Kaverit\\Padel-Kaverit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\minna\\source\\repos\\Padel-Kaverit\\Padel-Kaverit\\Padel-Kaverit.csproj": {
+    "C:\\Users\\auror\\Documents\\GitHub\\Projekti2BackEnd\\Padel-Kaverit\\Padel-Kaverit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\minna\\source\\repos\\Padel-Kaverit\\Padel-Kaverit\\Padel-Kaverit.csproj",
+        "projectUniqueName": "C:\\Users\\auror\\Documents\\GitHub\\Projekti2BackEnd\\Padel-Kaverit\\Padel-Kaverit.csproj",
         "projectName": "Padel-Kaverit",
-        "projectPath": "C:\\Users\\minna\\source\\repos\\Padel-Kaverit\\Padel-Kaverit\\Padel-Kaverit.csproj",
-        "packagesPath": "C:\\Users\\minna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\minna\\source\\repos\\Padel-Kaverit\\Padel-Kaverit\\obj\\",
+        "projectPath": "C:\\Users\\auror\\Documents\\GitHub\\Projekti2BackEnd\\Padel-Kaverit\\Padel-Kaverit.csproj",
+        "packagesPath": "C:\\Users\\auror\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\auror\\Documents\\GitHub\\Projekti2BackEnd\\Padel-Kaverit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\minna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\auror\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
