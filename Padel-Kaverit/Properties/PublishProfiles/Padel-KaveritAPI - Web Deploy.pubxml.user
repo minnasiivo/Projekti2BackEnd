@@ -7,11 +7,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAD13A5aUDJ06gZ5FzN+IEHQAAAAACAAAAAAAQZgAAAAEAACAAAABZH5rnY9/fA5Kj8SbdcF3v9GBUign/bsEqVzAeabMjygAAAAAOgAAAAAIAACAAAADepQZtJ+tun5d6vORwVH3XxiLDc2pNcMzF6JPV8OATaoAAAAAkaXJB+6D1mIfk3tUChn3EHaP3Tx/f0TveMhptbYq9xUKKr4Dd3iE136kKAAXibndLXPUsqtBFCn+itj53iIYWp3Q5OYA1QvsgQ3f+LRs/jA9KiZdJfcTEiKZsIkHQfVPslT5dq0Ipkme+q9Har335Zx1TxPciA7664iAG8so5I0AAAAB8cGQjauD8k7DnnWLl6jFtFjPYe/AV0dE+PuPi8ZgJ7b5+0a14UlCJ3PJfQuud6XRU6egy0eWaAVfLnKf0xxUn</EncryptedPassword>
-    <History>True|2022-11-07T20:10:11.0074948Z;False|2022-11-07T22:09:01.9514816+02:00;True|2022-11-07T22:06:42.7775220+02:00;</History>
+    <History>True|2022-11-08T12:29:46.7167511Z;True|2022-11-08T14:22:37.6265298+02:00;True|2022-11-08T14:02:47.7447030+02:00;True|2022-11-08T11:24:42.5977253+02:00;True|2022-11-08T10:52:37.4093806+02:00;True|2022-11-07T22:10:11.0074948+02:00;False|2022-11-07T22:09:01.9514816+02:00;True|2022-11-07T22:06:42.7775220+02:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="PadelDB">
-      <Value>Data Source=tcp:projekti-kakkonen.database.windows.net,1433%3bInitial Catalog=PadelKamut%3bUser Id=Padelpadelpadel%40projekti-kakkonen%3bPassword=salasana1</Value>
+      <Value>Data Source=tcp:projekti-kakkonen.database.windows.net,1433%3bInitial Catalog=PadelKamut%3bUser Id=Padelpadelpadel%40projekti-kakkonen%3bPassword=Salasana1</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
 </Project>

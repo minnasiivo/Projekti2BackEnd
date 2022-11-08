@@ -134,3 +134,6 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\Padel
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\ref\Padel-Kaverit.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\Padel-Kaverit.pdb
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\Padel-Kaverit.genruntimeconfig.cache
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Padel-Kaverit.xml
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\Padel-Kaverit.xml
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\appsetting.Production.json

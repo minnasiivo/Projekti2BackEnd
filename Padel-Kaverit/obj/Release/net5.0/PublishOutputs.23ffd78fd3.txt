@@ -1,4 +1,5 @@
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.exe
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\appsetting.Production.json
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\appsettings.json
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.dll
@@ -114,4 +115,5 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTm
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.xml
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.deps.json
