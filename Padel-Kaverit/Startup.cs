@@ -66,8 +66,8 @@ namespace Padel_Kaverit
                     Title = "Padel API",
                     Description = "An ASP.NET Web API for managing Padel profile"
                 });
-               // var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-               // options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
+               var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+               options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
             });
             
             

@@ -84,7 +84,7 @@ namespace Padel_Kaverit.Controllers
         {
             UserDTO newUser = await _service.CreateUserAsync(user);
 
-            return CreatedAtAction("GetUser", new { id = newUser.Id }, newUser);
+            return CreatedAtAction(nameof(PostUser), new { id = newUser.Id }, newUser);
         }
 
         // DELETE: api/Users/5
