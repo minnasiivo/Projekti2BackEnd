@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "appConfig1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.AppConfiguration/configurationStores/padeli",
+      "type": "appConfig.azure",
+      "connectionId": "AppConfig",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/projekti-kakkonen/databases/PadelKamut",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:PadelDB",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

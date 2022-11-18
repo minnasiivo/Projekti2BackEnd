@@ -69,8 +69,9 @@ namespace Padel_Kaverit
                var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
             });
-            
-            
+            services.AddAzureAppConfiguration();
+
+
         }
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +86,7 @@ namespace Padel_Kaverit
 
             db.Database.EnsureCreated();
             app.UseHttpsRedirection();
+            app.UseAzureAppConfiguration();
 
             app.UseRouting();
             app.UseCors();

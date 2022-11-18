@@ -5,8 +5,13 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTm
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.runtimeconfig.json
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.pdb
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Core.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Data.AppConfiguration.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Identity.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Security.KeyVault.Secrets.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.AppConfiguration.AspNetCore.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.CodeAnalysis.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.CodeAnalysis.CSharp.dll
@@ -19,8 +24,10 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTm
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll

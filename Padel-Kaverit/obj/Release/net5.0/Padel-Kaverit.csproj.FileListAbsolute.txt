@@ -137,3 +137,10 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\Padel
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Padel-Kaverit.xml
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\Padel-Kaverit.xml
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\appsetting.Production.json
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Azure.Core.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Azure.Data.AppConfiguration.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Azure.Identity.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Microsoft.Azure.AppConfiguration.AspNetCore.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll

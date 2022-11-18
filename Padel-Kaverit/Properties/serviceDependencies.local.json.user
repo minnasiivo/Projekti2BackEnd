@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "appConfig1": {
+      "restored": true,
+      "restoreTime": "2022-11-18T08:41:13.0733484Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2022-11-18T11:12:20.9939382Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2022-11-18T11:12:23.0752394Z"
+    }
+  },
+  "parameters": {
+    "appConfig1.subscriptionId": {
+      "Name": "appConfig1.subscriptionId",
+      "Type": "subscription",
+      "Value": "a13136a6-373d-4f6a-83c7-2adad3a8d5c1"
+    },
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "a13136a6-373d-4f6a-83c7-2adad3a8d5c1"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "ProjektiKaks"
+    },
+    "appConfig1.resourceGroupName": {
+      "Name": "appConfig1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "projektikaks"
+    }
+  }
+}
