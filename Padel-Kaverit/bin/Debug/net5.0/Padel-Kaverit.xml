@@ -4,5 +4,16 @@
         <name>Padel-Kaverit</name>
     </assembly>
     <members>
+        <member name="M:Padel_Kaverit.Controllers.UsersController.GetUsers">
+            <summary>
+            Gets a list af all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.UsersController.PutUser(System.String,Padel_Kaverit.Models.UserDTO)">
+            <summary>
+            Edit user
+            </summary>
+        </member>
     </members>
 </doc>

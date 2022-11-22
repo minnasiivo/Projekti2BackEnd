@@ -18,7 +18,7 @@ namespace Padel_Kaverit.Repositories
 
         public async Task<User> AddUserAsync(User user)
         {
-            _context.Users.Add(user);
+            _context.User.Add(user);
 
             try
             {
@@ -33,40 +33,53 @@ namespace Padel_Kaverit.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.User.ToListAsync();
 
         }
 
-        public Task<User> GetUserAsync(string id)
+        public async Task<User> GetUserAsync(string userName)
         {
-            throw new NotImplementedException();
+            return await _context.User.Where(x => x.UserName == userName).FirstOrDefaultAsync();
+
         }
 
-        public Task<User> UpdateUserAsync(User user)
+        public async Task<User> UpdateUserAsync(User user)
         {
-          //  _context.Users.Update(user);
+           _context.User.Update(user);
 
             try
             {
-               // await _context.SaveChangesAsync();
+               await _context.SaveChangesAsync();
             }
             catch (Exception)
             {
                 return null;
             }
+           return user;
+        }
+
+        public async Task<User> GetUserAsync(long id)
+        {
+            
+        /*   User user = await _repository.GetUserAsync(id);
+          if ( user == null)
+          {
+              return null;
+          }
+          return UserToDTO(user);*/
            return null;
         }
 
-        public Task<User> GetUserAsync(long id)
+        public async Task<bool> DeleteUserAsync(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DeleteUserAsync(User user)
-        {
-            //throw new NotImplementedException();
-            Console.WriteLine("HEIP");
-            return null;
+            _context.User.Remove(user);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            { return false; }
+            return true;
         }
 
         public Task<User> GetUserAsync(object name)

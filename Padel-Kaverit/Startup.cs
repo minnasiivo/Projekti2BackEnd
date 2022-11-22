@@ -9,18 +9,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Padel_Kaverit.Middleware;
 //using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
 using Padel_Kaverit.Repositories;
 using Padel_Kaverit.Services;
+using ReservationSystem.Middleware;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-
-
+using WebApplication1.Middleware;
 
 namespace Padel_Kaverit
 {
@@ -52,8 +53,8 @@ namespace Padel_Kaverit
 
          services.AddControllers();
             services.AddDbContext<PadelContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PadelDB")));
-            //services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-            //services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+            services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
            services.AddScoped<IUserService, UserServices>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -91,7 +92,7 @@ namespace Padel_Kaverit
             app.UseRouting();
             app.UseCors();
             
-            //app.UseMiddleware<ApiKeyMiddleware>();
+           app.UseMiddleware<ApiKeyMiddleware>();
            app.UseAuthentication();
            app.UseAuthorization();
 

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Padel_Kaverit.Models;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Padel_Kaverit.Services
 {
@@ -19,7 +21,7 @@ namespace Padel_Kaverit.Services
         {
 
           
-            /*  // tähän voi lisätä tarkistuksen, onko käyttäjänimellä jo luotu käyttäjä, jos on palautetaan virhe
+            // tähän voi lisätä tarkistuksen, onko käyttäjänimellä jo luotu käyttäjä, jos on palautetaan virhe
 
             byte[] salt = new byte[128 / 8];
             using (var rng = RandomNumberGenerator.Create())
@@ -33,7 +35,7 @@ namespace Padel_Kaverit.Services
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8
                 ));
-            */
+            
 
             User newUser = new User
             {

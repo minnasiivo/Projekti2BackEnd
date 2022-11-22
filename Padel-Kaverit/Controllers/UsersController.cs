@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
 using Padel_Kaverit.Services;
 
@@ -16,15 +19,24 @@ namespace Padel_Kaverit.Controllers
     {
         //private readonly PadelContext _context;
         private readonly IUserService _service;
-         
+        private readonly IUserAuthenticationService _UserAuthenticationService;
 
-        public UsersController(IUserService service)
+
+        public UsersController(IUserService service, IUserAuthenticationService userAuthenticationService)
         {
             _service = service;
+            _UserAuthenticationService = userAuthenticationService;
         }
 
         // GET: api/Users
+        /// <summary>
+        /// Gets a list af all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return Ok(await _service.GetAllUsersAsync());
@@ -47,34 +59,34 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(long id, User user)
+        /// <summary>
+        /// Edit user
+        /// </summary>
+        [HttpPut("{username}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> PutUser(String username, UserDTO user)
         {
-            if (id != user.Id)
+
+            if (username != user.UserName)
             {
                 return BadRequest();
             }
+            //tarkista onko oikeus muokata:
+            bool isAllowed = await _UserAuthenticationService.IsAllowed(this.User.FindFirst(ClaimTypes.Name).Value, user);
 
-          /*  _context.Entry(user).State = EntityState.Modified;
-
-            try
+            if (!isAllowed)
             {
-                await _context.SaveChangesAsync();
+                return Unauthorized();
             }
-            catch (DbUpdateConcurrencyException)
+            UserDTO updateUser = await _service.UpdateUserAsync(user);
+            if (updateUser == null)
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500);
             }
-          */
+            return Ok(updateUser);
 
-            return NoContent();
+
+            //return NoContent();
         }
 
         // POST: api/Users
@@ -91,7 +103,7 @@ namespace Padel_Kaverit.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
-            if (await _service.DeleteUserAsync(id)) ;
+            if (await _service.DeleteUserAsync(id));
             {
                 return Ok("Deleted");
             }
