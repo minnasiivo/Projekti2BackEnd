@@ -20,6 +20,7 @@ namespace Padel_Kaverit.Models
         public string Password { get; set; }
         public string Email { get; set; }
 
+
         public byte[] Salt { get; set; }
        
      
