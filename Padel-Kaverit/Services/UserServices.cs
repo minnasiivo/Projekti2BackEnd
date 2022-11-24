@@ -35,17 +35,17 @@ namespace Padel_Kaverit.Services
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8
                 ));
-            
+
 
             User newUser = new User
             {
-               // Name = user.Name,
+                // Name = user.Name,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName = user.UserName,
 
-                //Salt = salt,
-                Password = user.Password,
+                Salt = salt,
+                Password = hashedPassword,
                 IsAdmin = user.IsAdmin
             };
 

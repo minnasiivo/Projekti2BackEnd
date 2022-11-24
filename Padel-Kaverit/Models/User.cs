@@ -18,6 +18,7 @@ namespace Padel_Kaverit.Models
         [DefaultValue(false)]
         public bool IsAdmin { get; set; }
         public string Password { get; set; }
+        public string Email { get; set; }
 
         public byte[] Salt { get; set; }
        
