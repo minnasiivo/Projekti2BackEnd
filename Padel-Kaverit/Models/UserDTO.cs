@@ -13,6 +13,6 @@ namespace Padel_Kaverit.Models
         public string FirstName { get; internal set; }
         public string LastName { get; internal set; }
         public bool IsAdmin { get; set; }
-      //  public string Name { get; internal set; }
+        public string Email { get; internal set; }
     }
 }

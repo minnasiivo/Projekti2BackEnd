@@ -39,7 +39,7 @@ namespace Padel_Kaverit.Services
 
             User newUser = new User
             {
-                // Name = user.Name,
+                Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName = user.UserName,
@@ -115,7 +115,7 @@ namespace Padel_Kaverit.Services
         private User DTOToUser(UserDTO user, String password)
         {
             User newUser = new User();
-            //newUser.Name = user.Name;
+            newUser.Email = user.Email;
             newUser.FirstName = user.FirstName;
             newUser.LastName = user.LastName;
             newUser.UserName = user.UserName;
@@ -130,7 +130,7 @@ namespace Padel_Kaverit.Services
         {
             UserDTO dto = new UserDTO();
             dto.Id = user.Id;
-            //dto.Name = user.Name;
+            dto.Email = user.Email;
             dto.FirstName = user.FirstName;
             dto.LastName = user.LastName;
             dto.IsAdmin = user.IsAdmin;

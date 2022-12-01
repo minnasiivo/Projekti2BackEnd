@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Padel_Kaverit.Middleware;
-//using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
 using Padel_Kaverit.Repositories;
 using Padel_Kaverit.Services;
@@ -57,8 +56,10 @@ namespace Padel_Kaverit
             services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
            services.AddScoped<IUserService, UserServices>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IProfileRepository, ProfileRepository>();
 
-            
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo

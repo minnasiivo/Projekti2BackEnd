@@ -12,7 +12,7 @@ namespace Padel_Kaverit.Models
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        // public string Name { get; set; }
+      
 
 
         [DefaultValue(false)]

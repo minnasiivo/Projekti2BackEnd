@@ -15,6 +15,7 @@ namespace Padel_Kaverit.Models
             }
 
             public DbSet<User> User { get; set; }
+            public DbSet<Profile> Profile { get; set; }
         
     }
 
