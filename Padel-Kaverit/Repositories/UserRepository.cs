@@ -10,6 +10,7 @@ namespace Padel_Kaverit.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly PadelContext _context;
+        
 
         public UserRepository(PadelContext context)
         {
@@ -60,14 +61,15 @@ namespace Padel_Kaverit.Repositories
 
         public async Task<User> GetUserAsync(long id)
         {
-            
-        /*   User user = await _repository.GetUserAsync(id);
-          if ( user == null)
-          {
-              return null;
-          }
-          return UserToDTO(user);*/
-           return null;
+            return await _context.User.Where(x => x.Id == id).FirstOrDefaultAsync();
+            /*User user = await _repository.GetUserAsync(id);
+             if ( user == null)
+             {
+                 return null;
+             }
+             return UserToDTO(user);
+            */
+            //return null;
         }
 
         public async Task<bool> DeleteUserAsync(User user)

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
+using Padel_Kaverit.Services;
 
 namespace Padel_Kaverit.Controllers
 {
@@ -14,9 +17,13 @@ namespace Padel_Kaverit.Controllers
     public class ProfilesController : ControllerBase
     {
         private readonly PadelContext _context;
+        private readonly IProfileService _service;
+        private readonly IUserAuthenticationService _authenticationService;
 
-        public ProfilesController(PadelContext context)
-        {
+        public ProfilesController(PadelContext context, IUserAuthenticationService userAuthenticationService, IProfileService service)
+{
+            _service = service;
+            _authenticationService = userAuthenticationService;
             _context = context;
         }
 
@@ -51,7 +58,9 @@ namespace Padel_Kaverit.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(profile).State = EntityState.Modified;
+
+            Profile updateProfile = await _service.UpdateProfileAsync(profile);
+
 
             try
             {

@@ -43,7 +43,8 @@ namespace Padel_Kaverit
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                        policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod();
+                        //policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
 
                     });
 

@@ -10,14 +10,29 @@ namespace Padel_Kaverit.Repositories
     {
         private readonly PadelContext _context;
 
+        public ProfileRepository(PadelContext context)
+        {
+            _context = context;
+        }
+
         public Task<Profile> GetProfleAsync(long Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Profile> UpdateProfileAsync(Profile profile)
+        public async Task<Profile> UpdateProfileAsync(Profile profile)
         {
-            throw new NotImplementedException();
+            _context.Profile.Update(profile);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return profile;
         }
 
     }

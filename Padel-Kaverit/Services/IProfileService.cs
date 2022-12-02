@@ -8,6 +8,6 @@ namespace Padel_Kaverit.Services
 {
    public interface IProfileService
     {
-        public Task<Profile> UpdateUserAsync(Profile profile);
+        public Task<Profile> UpdateProfileAsync(Profile profile);
     }
 }
