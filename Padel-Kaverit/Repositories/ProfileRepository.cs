@@ -1,4 +1,5 @@
-﻿using Padel_Kaverit.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,24 @@ namespace Padel_Kaverit.Repositories
             _context = context;
         }
 
-        public Task<Profile> GetProfleAsync(long Id)
+        public async Task<Profile> AddProfileAsync(Profile profile)
         {
-            throw new NotImplementedException();
+            _context.Profile.Add(profile);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+            return profile;
+        }
+
+        public async Task<Profile> GetProfleAsync(long Id)
+        {
+            return await _context.Profile.Where(x => x.Id == Id).FirstOrDefaultAsync();
         }
 
         public async Task<Profile> UpdateProfileAsync(Profile profile)

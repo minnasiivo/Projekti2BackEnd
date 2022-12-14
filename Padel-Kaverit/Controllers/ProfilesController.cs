@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,14 @@ namespace Padel_Kaverit.Controllers
         private readonly PadelContext _context;
         private readonly IProfileService _service;
         private readonly IUserAuthenticationService _authenticationService;
+       
 
         public ProfilesController(PadelContext context, IUserAuthenticationService userAuthenticationService, IProfileService service)
 {
             _service = service;
             _authenticationService = userAuthenticationService;
             _context = context;
+          
         }
 
         // GET: api/Profiles
@@ -51,8 +54,10 @@ namespace Padel_Kaverit.Controllers
         // PUT: api/Profiles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+
         public async Task<IActionResult> PutProfile(long id, Profile profile)
         {
+         
             if (id != profile.Id)
             {
                 return BadRequest();
@@ -84,12 +89,20 @@ namespace Padel_Kaverit.Controllers
         // POST: api/Profiles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Profile>> PostProfile(Profile profile)
         {
+            profile = await _service.AddProfileAsync(profile);
+            if (profile == null)
+            {
+                return StatusCode(500);
+            }
             _context.Profile.Add(profile);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
+        //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);
+
         }
 
         // DELETE: api/Profiles/5
