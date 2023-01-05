@@ -59,6 +59,9 @@ namespace Padel_Kaverit
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
+            services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+            
 
 
             services.AddSwaggerGen(options =>

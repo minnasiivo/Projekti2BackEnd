@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿using Google.Apis.Admin.Directory.directory_v1.Data;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using Padel_Kaverit.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using User = Padel_Kaverit.Models.User;
 
 namespace Padel_Kaverit.Middleware
 {
@@ -12,8 +14,9 @@ namespace Padel_Kaverit.Middleware
     {
         Task<User> Authenticate(string username, string password);
         Task<bool> IsAllowed(String userName, UserDTO user);
-      
-       // Task<bool> IsAllowed(String userName, ReservationDTO reservation);
+        Task<bool> IsAllowed(string userNAme, ReservationDTO reservation);
+
+        
     }
 
     public class UserAuthenticationService : IUserAuthenticationService
@@ -58,6 +61,20 @@ namespace Padel_Kaverit.Middleware
             if (user == null)
             { return false; }
             if (user.IsAdmin || user.UserName == userInfo.UserName)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> IsAllowed(string userNAme, ReservationDTO reservation)
+        {
+            var user = await _padelContext.User.Where(x => x.UserName == userNAme).FirstOrDefaultAsync();
+            if (user == null)
+            {
+                return false;
+            }
+            if (user.IsAdmin || user.UserName == reservation.Owner)
             {
                 return true;
             }

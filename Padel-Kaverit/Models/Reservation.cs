@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Models
 {
-    public class Profile
+    public class Reservation
     {
         public long Id { get; set; }
+        public string Target { get; set; }
         public User Owner { get; set; }
-        public string BirthDate { get; set; }
-        public string Skill { get; set; }
-        public string Bio { get; set; }
-        public string PictureUrl { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
     }
 }
