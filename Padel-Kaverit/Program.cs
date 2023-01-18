@@ -52,6 +52,8 @@ namespace Padel_Kaverit
                             });
                         });
                     }
+                    var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
+                    config.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

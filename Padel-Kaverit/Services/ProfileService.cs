@@ -11,17 +11,26 @@ namespace Padel_Kaverit.Services
     {
         private readonly IProfileRepository _repository;
         private readonly IUserRepository _userRepository;
+        private User ownerId;
 
         public async Task<Profile> AddProfileAsync(Profile profile)
         {
+            
+          ownerId = await _userRepository.GetUserAsync(profile.Owner.Id);
+
             Profile newProfile = new Profile
             {
                 Id = profile.Id,
+                Owner = profile.Owner,
                 BirthDate = profile.BirthDate,
                 Skill = profile.Skill,
                 Bio = profile.Bio,
                 PictureUrl = profile.PictureUrl
+                
             };
+
+            if (newProfile == null)
+            { return null; }
 
             newProfile = await _repository.AddProfileAsync(newProfile);
 

@@ -97,8 +97,8 @@ namespace Padel_Kaverit.Controllers
             {
                 return StatusCode(500);
             }
-            _context.Profile.Add(profile);
-            await _context.SaveChangesAsync();
+  //          _context.Profile.Add(profile);
+    //        await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
         //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);

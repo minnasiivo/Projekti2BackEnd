@@ -8,7 +8,7 @@ namespace Padel_Kaverit.Models
     public class Profile
     {
         public long Id { get; set; }
-        public User Owner { get; set; }
+       public User Owner { get; set; }
         public string BirthDate { get; set; }
         public string Skill { get; set; }
         public string Bio { get; set; }
