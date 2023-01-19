@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -90,23 +91,36 @@ namespace Padel_Kaverit.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Profile>> PostProfile(Profile profile)
+        public async Task<ActionResult<Profile>> PostProfile(ProfileDTO profile)
         {
-            profile = await _service.AddProfileAsync(profile);
-            if (profile == null)
+            //bool isAllowed = await _authenticationService.IsAllowed(this.User.Id.FindFirst(ClaimTypes.Name).Value, profile);
+            //if (!isAllowed)
+           // {
+            //    return Unauthorized();
+           // }
+
+            ProfileDTO newProfile = await _service.AddProfileAsync(profile);
+            if (newProfile != null)
             {
-                return StatusCode(500);
+                return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
             }
   //          _context.Profile.Add(profile);
     //        await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
-        //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);
+            return StatusCode(500);
+            //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);
 
         }
 
-        // DELETE: api/Profiles/5
-        [HttpDelete("{id}")]
+
+
+     
+
+
+
+
+// DELETE: api/Profiles/5
+[HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProfile(long id)
         {
             var profile = await _context.Profile.FindAsync(id);

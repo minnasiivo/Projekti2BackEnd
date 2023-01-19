@@ -11,23 +11,29 @@ namespace Padel_Kaverit.Services
     {
         private readonly IProfileRepository _repository;
         private readonly IUserRepository _userRepository;
-        private User ownerId;
 
-        public async Task<Profile> AddProfileAsync(Profile profile)
+        public ProfileService(IProfileRepository repository, IUserRepository userRepository)
         {
-            
-          ownerId = await _userRepository.GetUserAsync(profile.Owner.Id);
+            _repository = repository;
+            _userRepository = userRepository;
+        }
 
-            Profile newProfile = new Profile
+        public async Task<Profile> AddProfileAsync(ProfileDTO profile)
+        {
+
+            Profile newProfile = await DTOToProfile(profile);
+                if (newProfile == null)
+            { return null; }
+
+            newProfile = await _repository.AddProfileAsync(newProfile);
+            if (newProfile.Id != 0)
             {
-                Id = profile.Id,
-                Owner = profile.Owner,
-                BirthDate = profile.BirthDate,
-                Skill = profile.Skill,
-                Bio = profile.Bio,
-                PictureUrl = profile.PictureUrl
+                // return ProfileToDTO(newProfile);
+                return await DTOToProfile(newProfile);
+            } 
+            else { return null; }
                 
-            };
+          
 
             if (newProfile == null)
             { return null; }
@@ -37,7 +43,8 @@ namespace Padel_Kaverit.Services
             return newProfile;
         }
 
-        public async Task<Profile> GetProfleAsync(long Id)
+
+public async Task<Profile> GetProfleAsync(long Id)
         {
             Profile profile = await _repository.GetProfleAsync(Id);
             return profile;
@@ -68,6 +75,35 @@ namespace Padel_Kaverit.Services
 
             return updateProfile;
 
+        }
+
+        private ProfileDTO ProfileToDTO(Profile profile)
+        {
+            ProfileDTO dto = new ProfileDTO();
+            dto.Id = profile.Id;
+            dto.BirthDate = profile.BirthDate;
+            dto.Skill = profile.Skill;
+            dto.PictureUrl = profile.PictureUrl;
+            dto.Bio = profile.Bio;
+            dto.Owner = profile.Owner.Id;
+            return dto;
+        }        
+
+        private async Task<Profile> DTOToProfile(ProfileDTO dto)
+        {
+            User owner = await _userRepository.GetUserAsync(dto.Owner);
+            if (owner == null)
+            {
+                return null;
+            }
+            Profile profile = new Profile();
+            profile.Id = dto.Id;
+            profile.BirthDate = dto.BirthDate;
+            profile.Skill = dto.Skill;
+            profile.PictureUrl = dto.PictureUrl;
+            profile.Bio = dto.Bio;
+            profile.Owner = owner;
+            return profile;
         }
     }
 }

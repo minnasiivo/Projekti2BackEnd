@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Repositories
 {
-    interface IProfileRepository
+   public interface IProfileRepository
     {
         public Task<Profile> AddProfileAsync(Profile profile);
       
