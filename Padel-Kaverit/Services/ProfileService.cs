@@ -18,29 +18,32 @@ namespace Padel_Kaverit.Services
             _userRepository = userRepository;
         }
 
-        public async Task<Profile> AddProfileAsync(ProfileDTO profile)
+        public async Task<ProfileDTO> AddProfileAsync(ProfileDTO profile)
         {
 
             Profile newProfile = await DTOToProfile(profile);
                 if (newProfile == null)
             { return null; }
 
+
+           // await _repository.AddProfileAsync(newProfile);
             newProfile = await _repository.AddProfileAsync(newProfile);
             if (newProfile.Id != 0)
             {
                 // return ProfileToDTO(newProfile);
-                return await DTOToProfile(newProfile);
+                return ProfileToDTO(newProfile);
             } 
             else { return null; }
                 
           
-
+            /*
             if (newProfile == null)
             { return null; }
 
             newProfile = await _repository.AddProfileAsync(newProfile);
 
             return newProfile;
+            */
         }
 
 

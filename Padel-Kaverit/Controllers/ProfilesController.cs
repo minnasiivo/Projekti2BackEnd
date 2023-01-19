@@ -21,13 +21,15 @@ namespace Padel_Kaverit.Controllers
         private readonly PadelContext _context;
         private readonly IProfileService _service;
         private readonly IUserAuthenticationService _authenticationService;
+        private readonly IUserService _userService;
        
 
-        public ProfilesController(PadelContext context, IUserAuthenticationService userAuthenticationService, IProfileService service)
+        public ProfilesController(PadelContext context, IUserAuthenticationService userAuthenticationService, IProfileService service, IUserService userService)
 {
             _service = service;
             _authenticationService = userAuthenticationService;
             _context = context;
+            _userService = userService;
           
         }
 
@@ -93,21 +95,25 @@ namespace Padel_Kaverit.Controllers
         [Authorize]
         public async Task<ActionResult<Profile>> PostProfile(ProfileDTO profile)
         {
-            //bool isAllowed = await _authenticationService.IsAllowed(this.User.Id.FindFirst(ClaimTypes.Name).Value, profile);
-            //if (!isAllowed)
-           // {
-            //    return Unauthorized();
-           // }
+            // pitäisi tehdä tarkistus, että yhdellä Userilla voi olla vain yksi profeeli!
+            
+            profile.Owner = 2;
 
-            ProfileDTO newProfile = await _service.AddProfileAsync(profile);
+                 //bool isAllowed = await _authenticationService.IsAllowed(this.User.Id.FindFirst(ClaimTypes.Name).Value, profile);
+                 //if (!isAllowed)
+                 // {
+                 //    return Unauthorized();
+                 // }
+
+                 ProfileDTO newProfile = await _service.AddProfileAsync(profile);
             if (newProfile != null)
             {
                 return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
             }
-  //          _context.Profile.Add(profile);
-    //        await _context.SaveChangesAsync();
-
-            return StatusCode(500);
+            //          _context.Profile.Add(profile);
+            //        await _context.SaveChangesAsync();
+            return StatusCode(863);
+            //return StatusCode(500);
             //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);
 
         }

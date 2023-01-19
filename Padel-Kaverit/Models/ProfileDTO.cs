@@ -17,9 +17,9 @@ namespace Padel_Kaverit.Models
         public string Bio { get; set; }
         public string PictureUrl { get; set; }
 
-        public static implicit operator ProfileDTO(Profile v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static implicit operator ProfileDTO(Profile v)
+        //{
+          //  throw new NotImplementedException();
+       // }
     }
 }
