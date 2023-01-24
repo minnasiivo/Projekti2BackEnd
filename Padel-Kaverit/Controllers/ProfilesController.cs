@@ -97,7 +97,7 @@ namespace Padel_Kaverit.Controllers
         {
             // pitäisi tehdä tarkistus, että yhdellä Userilla voi olla vain yksi profeeli!
             
-            profile.Owner = 2;
+           profile.Owner = 2;
 
                  //bool isAllowed = await _authenticationService.IsAllowed(this.User.Id.FindFirst(ClaimTypes.Name).Value, profile);
                  //if (!isAllowed)
@@ -112,8 +112,8 @@ namespace Padel_Kaverit.Controllers
             }
             //          _context.Profile.Add(profile);
             //        await _context.SaveChangesAsync();
-            return StatusCode(863);
-            //return StatusCode(500);
+           
+            return StatusCode(500);
             //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);
 
         }
