@@ -30,20 +30,11 @@ namespace Padel_Kaverit.Services
             newProfile = await _repository.AddProfileAsync(newProfile);
             if (newProfile.Id != 0)
             {
-                // return ProfileToDTO(newProfile);
+               
                 return ProfileToDTO(newProfile);
             } 
             else { return null; }
                 
-          
-            /*
-            if (newProfile == null)
-            { return null; }
-
-            newProfile = await _repository.AddProfileAsync(newProfile);
-
-            return newProfile;
-            */
         }
 
 
@@ -53,12 +44,7 @@ public async Task<Profile> GetProfleAsync(long Id)
             return profile;
         }
 
-        /*
-          public ProfileService(IProfileRepository repository)
-          {
-              _repository = repository;
-          }
-         */
+ 
 
 
         public async Task<Profile> UpdateProfileAsync(Profile profile)

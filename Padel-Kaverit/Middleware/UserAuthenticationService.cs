@@ -15,7 +15,7 @@ namespace Padel_Kaverit.Middleware
         Task<User> Authenticate(string username, string password);
         Task<bool> IsAllowed(String userName, UserDTO user);
         Task<bool> IsAllowed(string userNAme, ReservationDTO reservation);
-        Task<bool> IsAllowed(long id, ProfileDTO profile);
+        Task<bool> IsAllowed(String username, ProfileDTO profile);
     }
 
     public class UserAuthenticationService : IUserAuthenticationService
@@ -80,9 +80,9 @@ namespace Padel_Kaverit.Middleware
             return false;
         }
 
-        public async Task<bool> IsAllowed(long id, ProfileDTO profile)
+        public async Task<bool> IsAllowed(string username, ProfileDTO profile)
         {
-            var user = await _padelContext.User.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var user = await _padelContext.User.Where(x => x.UserName == username).FirstOrDefaultAsync();
             if (user == null)
             {
                 return false;

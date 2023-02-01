@@ -42,7 +42,7 @@ namespace Padel_Kaverit.Controllers
 
         // GET: api/Profiles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Profile>> GetProfile(long id)
+        public async Task<ActionResult<ProfileDTO>> GetProfile(long id)
         {
             var profile = await _context.Profile.FindAsync(id);
 
@@ -51,7 +51,7 @@ namespace Padel_Kaverit.Controllers
                 return NotFound();
             }
 
-            return profile;
+            return Ok (profile);
         }
 
         // PUT: api/Profiles/5
@@ -95,32 +95,26 @@ namespace Padel_Kaverit.Controllers
         [Authorize]
         public async Task<ActionResult<Profile>> PostProfile(ProfileDTO profile)
         {
-            // pitäisi tehdä tarkistus, että yhdellä Userilla voi olla vain yksi profeeli!
+            // pitäisi tehdä tarkistus, että yhdellä Userilla voi olla vain yksi profiili!
             
-           profile.Owner = 2;
+          //profile.Owner = 1;
 
-                 //bool isAllowed = await _authenticationService.IsAllowed(this.User.Id.FindFirst(ClaimTypes.Name).Value, profile);
-                 //if (!isAllowed)
-                 // {
-                 //    return Unauthorized();
-                 // }
+                 bool isAllowed = await _authenticationService.IsAllowed(this.User.FindFirst(ClaimTypes.Name).Value, profile);
+                 if (!isAllowed)
+                 {
+                     return Unauthorized("tänne ei ny pääse");
+                  }
 
                  ProfileDTO newProfile = await _service.AddProfileAsync(profile);
             if (newProfile != null)
             {
                 return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
             }
-            //          _context.Profile.Add(profile);
-            //        await _context.SaveChangesAsync();
            
+
             return StatusCode(500);
-            //return CreatedAtAction(nameof(PostProfile), new { id = newUser.Id }, newUser);
 
         }
-
-
-
-     
 
 
 
