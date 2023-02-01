@@ -96,16 +96,12 @@ namespace Padel_Kaverit.Controllers
         public async Task<ActionResult<Profile>> PostProfile(ProfileDTO profile)
         {
             // pitäisi tehdä tarkistus, että yhdellä Userilla voi olla vain yksi profiili!
-            
-          //profile.Owner = 1;
 
-                 bool isAllowed = await _authenticationService.IsAllowed(this.User.FindFirst(ClaimTypes.Name).Value, profile);
-                 if (!isAllowed)
-                 {
-                     return Unauthorized("tänne ei ny pääse");
-                  }
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
 
-                 ProfileDTO newProfile = await _service.AddProfileAsync(profile);
+               
+
+                 ProfileDTO newProfile = await _service.AddProfileAsync(profile, username);
             if (newProfile != null)
             {
                 return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);

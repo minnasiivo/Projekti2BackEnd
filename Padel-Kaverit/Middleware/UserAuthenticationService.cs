@@ -87,7 +87,7 @@ namespace Padel_Kaverit.Middleware
             {
                 return false;
             }
-            if (user.Id == profile.Owner)
+            if (user.UserName == profile.Owner)
             {
                 return true;
             }

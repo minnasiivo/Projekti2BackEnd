@@ -11,7 +11,7 @@ namespace Padel_Kaverit.Models
 
         //profile DTo --> owner long
         //tallennuksessa haku --> jolla loytyy käyttjä
-        public long Owner { get; set; }
+        public string Owner { get; set; }
         public string BirthDate { get; set; }
         public string Skill { get; set; }
         public string Bio { get; set; }
