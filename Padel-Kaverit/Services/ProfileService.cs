@@ -41,14 +41,24 @@ namespace Padel_Kaverit.Services
         }
 
 
-public async Task<Profile> GetProfleAsync(long Id)
+        public async Task<ProfileDTO> GetProfleAsync(long Id)
         {
             Profile profile = await _repository.GetProfleAsync(Id);
-            return profile;
+            ProfileDTO dto = ProfileToDTO(profile);
+            return dto;
         }
 
- 
 
+        public async Task<IEnumerable<ProfileDTO>> GetAllProfilesAsync()
+        {
+            IEnumerable<Profile> profiles = await _repository.GetProfileAsync();
+            List<ProfileDTO> profileDTOs = new List<ProfileDTO>();
+            foreach (Profile p in profiles)
+            {
+               profileDTOs.Add(ProfileToDTO(p));
+            }
+            return profileDTOs;
+        }
 
         public async Task<Profile> UpdateProfileAsync(Profile profile)
         {
@@ -97,5 +107,7 @@ public async Task<Profile> GetProfleAsync(long Id)
             profile.Owner = owner;
             return profile;
         }
+
+    
     }
 }

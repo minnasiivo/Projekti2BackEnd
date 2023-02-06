@@ -12,7 +12,8 @@ namespace Padel_Kaverit.Repositories
       
         public Task<Profile> UpdateProfileAsync(Profile profile);
         public Task<Profile> GetProfleAsync(long Id);
+        public Task<IEnumerable<Profile>> GetProfileAsync();
 
-        
+
     }
 }

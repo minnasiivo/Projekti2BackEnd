@@ -35,23 +35,31 @@ namespace Padel_Kaverit.Controllers
 
         // GET: api/Profiles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Profile>>> GetProfile()
+        public async Task<ActionResult<IEnumerable<ProfileDTO>>> GetAllProfiles()
         {
-            return await _context.Profile.ToListAsync();
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+            return Ok(await _service.GetAllProfilesAsync());
+          
+
         }
 
-        // GET: api/Profiles/5
+        //GET: api/Profiles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProfileDTO>> GetProfile(long id)
         {
-            var profile = await _context.Profile.FindAsync(id);
 
-            if (profile == null)
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+
+            //  var profile = await _context.Profile.FindAsync(id);
+            //var profile = await _service.GetProfleAsync(id);
+            ProfileDTO profileDTO = await _service.GetProfleAsync(id);
+
+            if (profileDTO == null)
             {
                 return NotFound();
             }
 
-            return Ok (profile);
+            return Ok (profileDTO);
         }
 
         // PUT: api/Profiles/5

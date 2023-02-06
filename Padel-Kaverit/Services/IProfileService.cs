@@ -10,6 +10,7 @@ namespace Padel_Kaverit.Services
     {
         public Task<ProfileDTO> AddProfileAsync(ProfileDTO profile, String username);
         public Task<Profile> UpdateProfileAsync(Profile profile);
-        public Task<Profile> GetProfleAsync(long Id);
+        public Task<ProfileDTO> GetProfleAsync(long Id);
+        public Task<IEnumerable<ProfileDTO>> GetAllProfilesAsync();
     }
 }

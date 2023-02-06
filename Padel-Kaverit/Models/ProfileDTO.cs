@@ -10,16 +10,13 @@ namespace Padel_Kaverit.Models
         public long Id { get; set; }
 
         //profile DTo --> owner long
-        //tallennuksessa haku --> jolla loytyy käyttjä
+        //tallennuksessa haku --> jolla loytyy käyttäjä
         public string Owner { get; set; }
         public string BirthDate { get; set; }
         public string Skill { get; set; }
         public string Bio { get; set; }
         public string PictureUrl { get; set; }
 
-        //public static implicit operator ProfileDTO(Profile v)
-        //{
-          //  throw new NotImplementedException();
-       // }
+  
     }
 }

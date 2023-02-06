@@ -31,6 +31,14 @@ namespace Padel_Kaverit.Repositories
             return profile;
         }
 
+        public async Task<IEnumerable<Profile>> GetProfileAsync()
+        {
+
+            return await _context.Profile.Include(i => i.Owner).ToListAsync();
+           // return await _context.Profile.ToListAsync();
+   
+        }
+
         public async Task<Profile> GetProfleAsync(long Id)
         {
             return await _context.Profile.Where(x => x.Id == Id).FirstOrDefaultAsync();
