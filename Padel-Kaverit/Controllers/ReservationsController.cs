@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
+using Padel_Kaverit.Repositories;
 using Padel_Kaverit.Services;
 
 namespace Padel_Kaverit.Controllers
@@ -20,12 +21,14 @@ namespace Padel_Kaverit.Controllers
         private readonly PadelContext _context;
         private readonly IReservationService _service;
         private readonly IUserAuthenticationService _authenticationService;
+        private readonly IUserRepository _userRepository;
 
-        public ReservationsController(PadelContext context, IReservationService service, IUserAuthenticationService authenticationService)
+        public ReservationsController(PadelContext context, IReservationService service, IUserAuthenticationService authenticationService, IUserRepository userRepository)
         {
             _service = service;
             _authenticationService = authenticationService;
             _context = context;
+            _userRepository = userRepository;
         }
 
         // GET: api/Reservations
@@ -83,13 +86,16 @@ namespace Padel_Kaverit.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Reservation>> PostReservation(ReservationDTO reservation)
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservation)
         {
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+           // ReservationDTO newReservation = await _service.CreateReservation(reservation);
+
             bool isAllowed = await _authenticationService.IsAllowed(this.User.FindFirst(ClaimTypes.Name).Value, reservation);
             if (!isAllowed)
             { return Unauthorized(); }
 
-            reservation = await _service.CreateReservationAsync(reservation);
+            ReservationDTO newReservation = await _service.CreateReservationAsync(reservation,username);
             if (reservation == null)
             {
                 return StatusCode(500);

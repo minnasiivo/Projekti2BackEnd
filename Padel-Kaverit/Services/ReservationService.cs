@@ -13,15 +13,24 @@ namespace Padel_Kaverit.Services
         private readonly IReservationRepository _repository;
         private readonly IUserRepository _userRepository;
 
-        public async  Task<ReservationDTO> CreateReservationAsync(ReservationDTO res)
+        public ReservationService(IUserRepository userRepository, IReservationRepository repository)
         {
+            _repository = repository;
+            _userRepository = userRepository;
+        }
+
+
+        public async  Task<ReservationDTO> CreateReservationAsync(ReservationDTO res, string username)
+        {
+            res.Owner = username;
+
             if (res.Start >= res.End)
             {
                 return null;
             }
             //lisää varaus
 
-            Reservation newReservation = await DTOToReservationAsync(res);
+            Reservation newReservation = await DTOToReservation(res);
 
             await _repository.AddReservationAsync(newReservation);
             return ReservationToDTO(newReservation);
@@ -29,7 +38,7 @@ namespace Padel_Kaverit.Services
 
         public async Task<ReservationDTO> DeleteReservation(ReservationDTO reservation)
         {
-            Reservation res = await DTOToReservationAsync(reservation);
+            Reservation res = await DTOToReservation(reservation);
             await _repository.RemoveReservation(res);
             return null;
 
@@ -94,10 +103,11 @@ namespace Padel_Kaverit.Services
             return reservationDTO;
         }
 
-        private async Task<Reservation> DTOToReservationAsync(ReservationDTO dto)
+        private async Task<Reservation> DTOToReservation(ReservationDTO dto)
         {
             Reservation reservation = new Reservation();
             User owner = await _userRepository.GetUserAsync(dto.Owner);
+          
 
             if (owner == null)
             {

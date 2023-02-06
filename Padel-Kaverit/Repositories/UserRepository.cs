@@ -84,9 +84,6 @@ namespace Padel_Kaverit.Repositories
             return true;
         }
 
-        public Task<User> GetUserAsync(object name)
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

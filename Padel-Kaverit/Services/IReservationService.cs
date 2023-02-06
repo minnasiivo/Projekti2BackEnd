@@ -8,7 +8,7 @@ namespace Padel_Kaverit.Services
 {
    public interface IReservationService
     {
-        public Task<ReservationDTO> CreateReservationAsync(ReservationDTO res);
+        public Task<ReservationDTO> CreateReservationAsync(ReservationDTO res, string username);
      
         public Task<IEnumerable<ReservationDTO>> GetAllReservations();
         public Task<IEnumerable<ReservationDTO>> GetReservationForUser(String username);

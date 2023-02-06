@@ -12,12 +12,13 @@ namespace Padel_Kaverit.Repositories
 
         public Task<IEnumerable<User>> GetAllUsersAsync();
 
-        public Task<User> GetUserAsync(string id);
-
         public Task<User> UpdateUserAsync(User user);
 
         public Task<User> GetUserAsync(long id);
         public Task<Boolean> DeleteUserAsync(User user);
-        Task<User> GetUserAsync(object name);
+
+        public Task<User> GetUserAsync(string userName);
+
+
     }
 }

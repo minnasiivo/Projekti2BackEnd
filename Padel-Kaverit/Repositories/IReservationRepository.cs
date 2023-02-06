@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Repositories
 {
-    interface IReservationRepository
+    public interface IReservationRepository
     {
         public Task<Reservation> AddReservationAsync(Reservation res);
 
