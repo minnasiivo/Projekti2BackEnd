@@ -18,7 +18,9 @@ namespace Padel_Kaverit.Services
         public Task<IEnumerable<ReservationDTO>> GetReservation(long id);
 
         public Task<ReservationDTO> DeleteReservation(ReservationDTO reservation);
+   
 
-        
+
+
     }
 }

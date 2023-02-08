@@ -38,7 +38,8 @@ namespace Padel_Kaverit.Repositories
 
         public async Task<IEnumerable<Reservation>> GetReservationAsync()
         {
-            return await _context.Reservations.Include(i => i.Owner).Include(i => i.Target).ToListAsync(); ;
+            return await _context.Reservations.Include(i => i.Owner).ToListAsync();
+            //return await _context.Reservations.Include(i => i.Owner).Include(i => i.Target).ToListAsync();
         }
 
         public async Task<IEnumerable<Reservation>> GetReservationsAsync(User user)
@@ -65,7 +66,10 @@ namespace Padel_Kaverit.Repositories
             return null;
         }
 
-        public async Task<Reservation> UpdateReservation(Reservation reservation)
+
+
+
+public async Task<Reservation> UpdateReservation(Reservation reservation)
         {
             try
             {

@@ -58,7 +58,13 @@ namespace Padel_Kaverit.Services
 
         public async Task<IEnumerable<ReservationDTO>> GetReservation(long id)
         {
-            throw new NotImplementedException();
+            IEnumerable<Reservation> reservations = await _repository.GetReservationAsync();
+            List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
+            foreach (Reservation r in reservations)
+            {
+                reservationDTOs.Add(ReservationToDTO(r));
+            }
+            return reservationDTOs;
         }
 
         public async Task<IEnumerable<ReservationDTO>> GetReservationForUser(string username)
@@ -82,6 +88,7 @@ namespace Padel_Kaverit.Services
             Reservation dbReservation = await _repository.GetReservationAsync(reservation.Id);
             dbReservation.Start = reservation.Start;
             dbReservation.End = reservation.End;
+            dbReservation.Target = reservation.Target;
 
             Reservation updateReservation = await _repository.UpdateReservation(dbReservation);
             if (updateReservation == null)

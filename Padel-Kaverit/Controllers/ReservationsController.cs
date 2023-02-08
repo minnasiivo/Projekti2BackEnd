@@ -53,33 +53,27 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Reservations/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(long id, Reservation reservation)
+        [HttpPut]
+        // [HttpPut("{id}")]
+        public async Task<IActionResult> PutReservation(ReservationDTO reservation)
         {
-            if (id != reservation.Id)
-            {
-                return BadRequest();
-            }
+            // if (id != reservation.Id)
+            // {
+            //   return BadRequest();
+            //}
 
-            _context.Entry(reservation).State = EntityState.Modified;
 
+            ReservationDTO updateReservation = await _service.UpdateReservation(reservation);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ReservationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return null;
             }
 
-            return NoContent();
+            return NoContent(); ;
         }
 
         // POST: api/Reservations
@@ -105,19 +99,19 @@ namespace Padel_Kaverit.Controllers
         }
 
         // DELETE: api/Reservations/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(long id)
+        [HttpDelete]
+        //[HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReservation(ReservationDTO reservationDTO)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
-            if (reservation == null)
+
+            try
             {
-                return NotFound();
+                await _service.DeleteReservation(reservationDTO);
             }
 
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
+            catch { return null; }
 
-            return NoContent();
+            return Ok("Deleted");
         }
 
         private bool ReservationExists(long id)
