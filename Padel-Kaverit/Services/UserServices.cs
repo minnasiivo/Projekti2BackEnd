@@ -95,10 +95,10 @@ namespace Padel_Kaverit.Services
 
         public async Task<UserDTO> UpdateUserAsync(UserDTO user)
         {
-            User dbUser = await _repository.GetUserAsync(user.FirstName);
+            User dbUser = await _repository.GetUserAsync(user.UserName);
             dbUser.FirstName = user.FirstName;
             dbUser.LastName = user.LastName;
-
+            dbUser.Email = user.Email;
             User updateUser = await _repository.UpdateUserAsync(dbUser);
             if (updateUser == null)
             {

@@ -60,11 +60,11 @@ namespace Padel_Kaverit.Services
             return profileDTOs;
         }
 
-        public async Task<Profile> UpdateProfileAsync(Profile profile)
+        public async Task<ProfileDTO> UpdateProfileAsync(ProfileDTO profileDTO)
         {
-       
+            Profile profile = await DTOToProfile(profileDTO);
 
-            Profile dbProfile = await _repository.GetProfleAsync(profile.Id);
+           Profile dbProfile = await _repository.GetProfleAsync(profile.Id);
             dbProfile.BirthDate = profile.BirthDate;
             dbProfile.Bio = profile.Bio;
             dbProfile.Skill = profile.Skill;
@@ -75,7 +75,8 @@ namespace Padel_Kaverit.Services
                 return null; 
             }
 
-            return updateProfile;
+            ProfileDTO updateProfileDTO = ProfileToDTO(updateProfile);
+            return updateProfileDTO;
 
         }
 

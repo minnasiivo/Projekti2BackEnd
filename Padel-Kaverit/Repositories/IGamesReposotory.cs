@@ -13,5 +13,6 @@ namespace Padel_Kaverit.Repositories
         public Task<Game> UpdateGameInfoAsync(Game game);
         public Task<Game> DeleteGameAsync(long Id);
         public Task<IEnumerable<Game>> GetGamesAsync();
+        public Task<IEnumerable<Game>> GetGamesForUserAsync(string username);
     }
 }

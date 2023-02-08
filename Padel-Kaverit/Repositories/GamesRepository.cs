@@ -23,6 +23,11 @@ namespace Padel_Kaverit.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<Game>> GetGamesForUserAsync(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Game> UpdateGameInfoAsync(Game game)
         {
             throw new NotImplementedException();

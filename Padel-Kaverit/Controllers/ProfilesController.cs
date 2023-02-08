@@ -64,27 +64,29 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Profiles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-
-        public async Task<IActionResult> PutProfile(long id, Profile profile)
+       [HttpPut]
+       //[HttpPut("{userName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> PutProfile(ProfileDTO profile)
         {
-         
-            if (id != profile.Id)
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+
+            if (username != profile.Owner)
             {
-                return BadRequest();
+                return BadRequest("EI ONNISTU");
             }
 
 
-            Profile updateProfile = await _service.UpdateProfileAsync(profile);
+            ProfileDTO updateProfile = await _service.UpdateProfileAsync(profile);
 
 
-            try
+           /* try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProfileExists(id))
+                if (!ProfileExists(profile.Id))
                 {
                     return NotFound();
                 }
@@ -92,7 +94,7 @@ namespace Padel_Kaverit.Controllers
                 {
                     throw;
                 }
-            }
+            }*/
 
             return NoContent();
         }

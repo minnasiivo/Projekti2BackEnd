@@ -62,11 +62,12 @@ namespace Padel_Kaverit.Controllers
         /// <summary>
         /// Edit user
         /// </summary>
-        [HttpPut("{username}")]
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> PutUser(String username, UserDTO user)
+        public async Task<IActionResult> PutUser(UserDTO user)
         {
-
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+         
             if (username != user.UserName)
             {
                 return BadRequest();
