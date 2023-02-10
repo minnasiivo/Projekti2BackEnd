@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\minna\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\minna\\.nuget\\packages"
+      "C:\\Users\\auror\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\auror\\.nuget\\packages"
     ]
   }
 }
