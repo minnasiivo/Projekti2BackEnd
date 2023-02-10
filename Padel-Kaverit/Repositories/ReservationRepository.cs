@@ -71,6 +71,7 @@ namespace Padel_Kaverit.Repositories
 
 public async Task<Reservation> UpdateReservation(Reservation reservation)
         {
+            _context.Reservations.Update(reservation);
             try
             {
                 await _context.SaveChangesAsync();
