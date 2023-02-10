@@ -1,4 +1,5 @@
-﻿using Padel_Kaverit.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,29 +9,67 @@ namespace Padel_Kaverit.Repositories
 {
     public class GamesRepository : IGamesReposotory
     {
-        public Task<Game> AddGameasync(Game game)
+        private readonly PadelContext _context;
+        public GamesRepository(PadelContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Game> DeleteGameAsync(long Id)
+        public async Task<Game> AddGameasync(Game game)
         {
-            throw new NotImplementedException();
+            _context.Game.Add(game);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+            return game;
         }
 
-        public Task<IEnumerable<Game>> GetGamesAsync()
+        public async Task<bool> DeleteGameAsync(long Id)
         {
-            throw new NotImplementedException();
+            Game game = _context.Game.Find(Id);
+            _context.Game.Remove(game);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            { return false; }
+            return true;
+
         }
 
-        public Task<IEnumerable<Game>> GetGamesForUserAsync(string username)
+        public async Task<IEnumerable<Game>> GetAllGamesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Game.ToListAsync();
         }
 
-        public Task<Game> UpdateGameInfoAsync(Game game)
+        public async Task<IEnumerable<Game>> GetGamesForUserAsync(string uesrname)
         {
-            throw new NotImplementedException();
+            return await _context.Game.Include(i => i.player1).Include(i => i.player2).ToListAsync();
+
+        }
+
+
+        public async Task<Game> UpdateGameInfoAsync(Game game)
+        {
+            _context.Game.Update(game);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return null;
         }
     }
 }
