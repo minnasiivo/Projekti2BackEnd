@@ -55,6 +55,7 @@ namespace Padel_Kaverit.Repositories
             return await _context.Game.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
+   
         public async Task<IEnumerable<Game>> GetGamesForUserAsync(string uesrname)
         {
             return await _context.Game.Include(i => i.owner).Include(i => i.player2).Include(i => i.player3).Include(i => i.player4).Include(i => i.player2username).Include(i => i.player3username).Include(i => i.player4username).ToListAsync();

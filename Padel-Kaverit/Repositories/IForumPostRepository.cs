@@ -13,6 +13,7 @@ namespace Padel_Kaverit.Repositories
         public Task<ForumPost> UpdatePostAsync(ForumPost post);
         public Task<IEnumerable<ForumPost>> GetPostAsync(string  username);
         public Task<IEnumerable<ForumPost>> GetPostAsync(DateTime time);
+        public Task<ForumPost> GetPostById(long id);
         public Task<IEnumerable<ForumPost>> GetAllPostAsync();
 
 

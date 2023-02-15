@@ -44,19 +44,40 @@ namespace Padel_Kaverit.Services
             return false;
         }
 
-        public Task<IEnumerable<Game>> GetGames()
+        public async Task<IEnumerable<Game>> GetGames()
         {
-            throw new NotImplementedException();
+            IEnumerable<Game> games = await _repository.GetAllGamesAsync();
+            
+            
+            return games;
         }
 
-        public Task<IEnumerable<Game>> GetGamesForUser(string username)
+        public async Task<IEnumerable<Game>> GetGamesForUser(string username)
         {
-            throw new NotImplementedException();
+            IEnumerable<Game> games = await _repository.GetGamesForUserAsync(username);
+
+            return games;
         }
 
-        public Task<Game> UpdateGameInfoAsync(Game game)
+        public async Task<Game> UpdateGameInfoAsync(Game game)
         {
-            throw new NotImplementedException();
+            Game dbGame = await _repository.GetGameAsync(game.Id);
+            dbGame.owner = game.owner;
+            dbGame.player2 = game.player2;
+            dbGame.player3 = game.player3;
+            dbGame.player4 = game.player4;
+            dbGame.player2username = game.player2username;
+            dbGame.player3username = game.player3username;
+            dbGame.player4username = game.player4username;
+            dbGame.Score = game.Score;
+            dbGame.GameTime = game.GameTime;
+
+            Game updateGame = await _repository.UpdateGameInfoAsync(dbGame);
+            if (updateGame == null)
+            {
+                return null;
+            }
+            return dbGame;
         }
     }
 }

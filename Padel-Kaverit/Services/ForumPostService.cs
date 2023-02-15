@@ -38,24 +38,34 @@ namespace Padel_Kaverit.Services
          
         }
 
-        public Task<IEnumerable<ForumPost>> GetAllPosts()
+        public async Task<IEnumerable<ForumPost>> GetAllPosts()
         {
-            throw new NotImplementedException();
+            IEnumerable<ForumPost> posts = await _repository.GetAllPostAsync();
+            return posts;
         }
 
-        public Task<IEnumerable<ForumPost>> GetPostsByDateAsync(DateTime date)
+        public async Task<IEnumerable<ForumPost>> GetPostsByDateAsync(DateTime date)
         {
-            throw new NotImplementedException();
+            IEnumerable<ForumPost> posts = await _repository.GetPostAsync(date);
+            return posts;
         }
 
-        public Task<IEnumerable<ForumPost>> GetPostsByWriter(string username)
+        public async Task<IEnumerable<ForumPost>> GetPostsByWriter(string username)
         {
-            throw new NotImplementedException();
+            IEnumerable<ForumPost> posts = await _repository.GetPostAsync(username);
+            return posts;
         }
 
-        public Task<ForumPost> RemovePostAsync(long id)
+        public async Task<bool> RemovePostAsync(long id)
         {
-            throw new NotImplementedException();
+            ForumPost post = await _repository.GetPostById(id);
+
+            if (post != null)
+            {
+             return  await _repository.DeletePostAsync(id);
+                
+            }
+            return false;
         }
 
         public Task<ForumPost> UpdatePostsync(ForumPost forumPost)

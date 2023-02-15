@@ -63,6 +63,12 @@ namespace Padel_Kaverit.Repositories
             return await _context.ForumPosts.Include(i => i.Published).ToListAsync();
         }
 
+        public async Task<ForumPost> GetPostById(long id)
+        {
+            return await _context.ForumPosts.Where(x => x.Id == id).FirstOrDefaultAsync();
+               
+        }
+
         public async Task<ForumPost> UpdatePostAsync(ForumPost post)
         {
             _context.ForumPosts.Update(post);
