@@ -9,6 +9,7 @@ namespace Padel_Kaverit.Models
     {
         public DateTime GameTime { get; set; }
         public long Id { get; set; }
+        
         public string player2username { get; set; }
         public string player3username { get; set; }
         public string player4username { get; set; }

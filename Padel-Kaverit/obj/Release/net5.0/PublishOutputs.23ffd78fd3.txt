@@ -7,8 +7,14 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTm
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Padel-Kaverit.pdb
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Core.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Data.AppConfiguration.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Identity.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Azure.Security.KeyVault.Secrets.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Google.Apis.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Google.Apis.Admin.Directory.directory_v1.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Google.Apis.Auth.PlatformServices.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Google.Apis.Auth.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Google.Apis.Core.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.AppConfiguration.AspNetCore.dll

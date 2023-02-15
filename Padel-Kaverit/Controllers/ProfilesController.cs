@@ -43,6 +43,20 @@ namespace Padel_Kaverit.Controllers
 
         }
 
+
+        [HttpGet("{string}")]
+        public async Task<ActionResult<ProfileDTO>> GetProfile(string username)
+        {
+
+            ProfileDTO profileDTO = await _service.GetProfleAsync(username);
+            if (profileDTO == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(profileDTO);
+        }
+
         //GET: api/Profiles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProfileDTO>> GetProfile(long id)

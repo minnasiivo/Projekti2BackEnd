@@ -10,7 +10,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Padel_Kaverit.Controllers.UsersController.PutUser(System.String,Padel_Kaverit.Models.UserDTO)">
+        <member name="M:Padel_Kaverit.Controllers.UsersController.PutUser(Padel_Kaverit.Models.UserDTO)">
             <summary>
             Edit user
             </summary>

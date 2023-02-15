@@ -41,7 +41,12 @@ namespace Padel_Kaverit.Repositories
 
         public async Task<Profile> GetProfleAsync(long Id)
         {
-            return await _context.Profile.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            return await _context.Profile.Where(x => x.Id == Id).Include(i => i.Owner).FirstOrDefaultAsync();
+        }
+
+        public async Task<Profile> GetProfleAsync(string username)
+        {
+            return await _context.Profile.Where(x => x.Owner.UserName == username).Include(i => i.Owner).FirstOrDefaultAsync();
         }
 
         public async Task<Profile> UpdateProfileAsync(Profile profile)

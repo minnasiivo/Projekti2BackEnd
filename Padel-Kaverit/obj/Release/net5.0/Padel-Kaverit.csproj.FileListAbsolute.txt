@@ -144,3 +144,9 @@ C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Azure
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Microsoft.Azure.AppConfiguration.AspNetCore.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll
 C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Google.Apis.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Google.Apis.Admin.Directory.directory_v1.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Google.Apis.Auth.dll
+C:\Users\minna\source\repos\Padel-Kaverit\Padel-Kaverit\bin\Release\net5.0\Google.Apis.Core.dll

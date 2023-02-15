@@ -48,6 +48,13 @@ namespace Padel_Kaverit.Services
             return dto;
         }
 
+        public async Task<ProfileDTO> GetProfleAsync(string username)
+        {
+            
+            Profile profile = await _repository.GetProfleAsync(username);
+            ProfileDTO dto = ProfileToDTO(profile);
+            return dto;
+        }
 
         public async Task<IEnumerable<ProfileDTO>> GetAllProfilesAsync()
         {
@@ -82,8 +89,12 @@ namespace Padel_Kaverit.Services
 
         private ProfileDTO ProfileToDTO(Profile profile)
         {
+            //User user = await _userRepository.GetUserAsync(profile.Owner.Id);
+
             ProfileDTO dto = new ProfileDTO();
             dto.Id = profile.Id;
+            dto.FirstName = profile.Owner.FirstName;
+            dto.LastName =profile.Owner.LastName;
             dto.BirthDate = profile.BirthDate;
             dto.Skill = profile.Skill;
             dto.PictureUrl = profile.PictureUrl;
@@ -109,6 +120,6 @@ namespace Padel_Kaverit.Services
             return profile;
         }
 
-    
+
     }
 }
