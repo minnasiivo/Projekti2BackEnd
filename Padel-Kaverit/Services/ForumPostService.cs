@@ -68,24 +68,22 @@ namespace Padel_Kaverit.Services
             return false;
         }
 
-        public Task<ForumPost> UpdatePostsync(ForumPost forumPost)
+        public async Task<ForumPost> UpdatePostsync(ForumPost forumPost)
         {
-            //Profile profile = await DTOToProfile(profileDTO);
+            ForumPost dbPost = await _repository.GetPostById(forumPost.Id);
+            dbPost.Title = forumPost.Title;
+            dbPost.Content = forumPost.Content;
+            dbPost.Answers.Content = forumPost.Answers.Content;
 
-            //Profile dbProfile = await _repository.GetProfleAsync(profile.Id);
-            //dbProfile.BirthDate = profile.BirthDate;
-            //dbProfile.Bio = profile.Bio;
-            //dbProfile.Skill = profile.Skill;
 
-            //Profile updateProfile = await _repository.UpdateProfileAsync(dbProfile);
-            //if (updateProfile == null)
-            //{
-            //    return null;
-            //}
+            ForumPost updatePost = await _repository.UpdatePostAsync(dbPost);
+            if (updatePost == null)
+            {
+                return null;
+            }
 
-            //ProfileDTO updateProfileDTO = ProfileToDTO(updateProfile);
-            //return updateProfileDTO;
-            return null;
+            return updatePost;
+         
         }
     }
 }
