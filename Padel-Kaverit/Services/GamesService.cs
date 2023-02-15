@@ -1,4 +1,5 @@
 ﻿using Padel_Kaverit.Models;
+using Padel_Kaverit.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,39 @@ namespace Padel_Kaverit.Services
 {
     public class GamesService : IGamesService
     {
-        public Task<Game> AddGameasync(Game game)
+        private readonly IGamesReposotory _repository;
+        private readonly IUserRepository _userRepository;
+
+        public GamesService (IGamesReposotory repository, IUserRepository userRepository) 
+        { 
+            _repository = repository;
+            _userRepository = userRepository;
+        }
+       
+        public async Task<Game> AddGameasync(Game game, User user)
         {
-            throw new NotImplementedException();
+            game.owner = user;
+
+            try
+            {
+                await _repository.AddGameasync(game);
+            }
+            catch
+            {
+                return null;
+            }
+            return game;
         }
 
-        public Task<Game> DeleteGameAsync(long Id)
+        public async Task<Boolean> DeleteGameAsync(long Id)
         {
-            throw new NotImplementedException();
+            Game game = await _repository.GetGameAsync(Id);
+            if (game != null)
+            {
+                return await _repository.DeleteGameAsync(Id);
+
+            }
+            return false;
         }
 
         public Task<IEnumerable<Game>> GetGames()

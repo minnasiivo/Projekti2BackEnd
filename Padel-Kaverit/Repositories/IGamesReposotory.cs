@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Repositories
 {
-    interface IGamesReposotory
+    public interface IGamesReposotory
     {
         public Task<Game> AddGameasync(Game game);
+        public Task<Game> GetGameAsync( long id);
 
         public Task<Game> UpdateGameInfoAsync(Game game);
-        public Task<bool> DeleteGameAsync(long Id);
+        public Task<Boolean> DeleteGameAsync(long Id);
         public Task<IEnumerable<Game>> GetAllGamesAsync();
         public Task<IEnumerable<Game>> GetGamesForUserAsync(string username);
     }
