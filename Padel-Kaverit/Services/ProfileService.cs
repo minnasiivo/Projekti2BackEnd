@@ -52,6 +52,10 @@ namespace Padel_Kaverit.Services
         {
             
             Profile profile = await _repository.GetProfleAsync(username);
+            if (profile == null)
+            {
+                return null;
+            }
             ProfileDTO dto = ProfileToDTO(profile);
             return dto;
         }

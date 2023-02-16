@@ -95,9 +95,14 @@ namespace Padel_Kaverit.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDTO>> PostUser(User user)
         {
-            UserDTO newUser = await _service.CreateUserAsync(user);
 
-            return CreatedAtAction(nameof(PostUser), new { id = newUser.Id }, newUser);
+            if (await _service.GetUserAsync(user.UserName) == null)
+            {
+                UserDTO newUser = await _service.CreateUserAsync(user);
+
+                return CreatedAtAction(nameof(PostUser), new { id = newUser.Id }, newUser);
+            }
+            return StatusCode(409);
         }
 
         // DELETE: api/Users/5

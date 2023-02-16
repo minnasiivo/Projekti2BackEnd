@@ -117,18 +117,23 @@ namespace Padel_Kaverit.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Profile>> PostProfile(ProfileDTO profile)
+        public async Task<ActionResult<ProfileDTO>> PostProfile(ProfileDTO profile)
         {
-            // pitäisi tehdä tarkistus, että yhdellä Userilla voi olla vain yksi profiili!
+            // tarkistus, että yhdellä Userilla voi olla vain yksi profiili!
 
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
 
-               
-
-                 ProfileDTO newProfile = await _service.AddProfileAsync(profile, username);
+            ProfileDTO existingProfile = await _service.GetProfleAsync(username);
+            if (existingProfile != null)
+            { return StatusCode(409); }
+            else
+            { 
+            ProfileDTO newProfile = await _service.AddProfileAsync(profile, username);
             if (newProfile != null)
             {
-                return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
+                    return newProfile;
+                //return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
+            } 
             }
            
 
