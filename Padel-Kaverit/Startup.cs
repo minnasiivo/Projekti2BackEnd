@@ -61,10 +61,11 @@ namespace Padel_Kaverit
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
-            services.AddScoped<IForumPostService, ForumPostService>();
-            services.AddScoped<IForumPostRepository, ForumRepository>();
+            //services.AddScoped<IForumPostService, ForumPostService>();
+           // services.AddScoped<IForumPostRepository, ForumRepository>();
             services.AddScoped<IGamesService, GamesService>();
             services.AddScoped<IGamesReposotory, GamesRepository>();
+
             
 
 

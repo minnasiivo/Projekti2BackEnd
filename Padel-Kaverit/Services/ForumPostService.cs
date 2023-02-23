@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+/*
 namespace Padel_Kaverit.Services
 {
     public class ForumPostService : IForumPostService
@@ -73,7 +73,7 @@ namespace Padel_Kaverit.Services
             ForumPost dbPost = await _repository.GetPostById(forumPost.Id);
             dbPost.Title = forumPost.Title;
             dbPost.Content = forumPost.Content;
-            dbPost.Answers.Content = forumPost.Answers.Content;
+            //dbPost.Answers.Content = forumPost.Answers.Content;
 
 
             ForumPost updatePost = await _repository.UpdatePostAsync(dbPost);
@@ -87,3 +87,4 @@ namespace Padel_Kaverit.Services
         }
     }
 }
+*/
