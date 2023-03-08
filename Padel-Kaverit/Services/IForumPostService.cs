@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-/*
+
 namespace Padel_Kaverit.Services
 {
     interface IForumPostService
@@ -16,4 +16,3 @@ namespace Padel_Kaverit.Services
         public Task<IEnumerable<ForumPost>>  GetAllPosts();
     }
 }
-*/
