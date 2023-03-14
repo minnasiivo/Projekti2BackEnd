@@ -14,7 +14,7 @@ namespace Padel_Kaverit.Middleware
     {
         Task<User> Authenticate(string username, string password);
         Task<bool> IsAllowed(String userName, UserDTO user);
-        Task<bool> IsAllowed(string userNAme, ReservationDTO reservation);
+        Task<bool> IsAllowed(String userNAme, ReservationDTO reservation);
         Task<bool> IsAllowed(String username, ProfileDTO profile);
     }
 

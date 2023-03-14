@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
+using Padel_Kaverit.Services;
 
 namespace Padel_Kaverit.Controllers
 {
@@ -14,10 +16,16 @@ namespace Padel_Kaverit.Controllers
     public class GamesController : ControllerBase
     {
         private readonly PadelContext _context;
+        private readonly IGamesService _service;
+        private readonly IUserAuthenticationService _authenticationService;
+        private readonly IUserService _userService;
 
-        public GamesController(PadelContext context)
+        public GamesController(PadelContext context, IUserAuthenticationService authenticationService, IUserService userService, IGamesService service)
         {
             _context = context;
+            _service = service;
+            _authenticationService = authenticationService;
+            _userService = userService;
         }
 
         // GET: api/Games
@@ -28,10 +36,11 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Games/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Game>> GetGame(long id)
-        {
-            var game = await _context.Game.FindAsync(id);
+        [HttpGet("{username}")]
+        public async Task<ActionResult<GameResultsDTO>> GetGame(string username)
+        { // KESKEN KESKEN KESKEN KESKEN KESKEN
+            //var game = await _service.GetGamesForUser(username);
+            var game = await _service.GetGameResults(username);
 
             if (game == null)
             {
@@ -77,10 +86,35 @@ namespace Padel_Kaverit.Controllers
         [HttpPost]
         public async Task<ActionResult<Game>> PostGame(Game game)
         {
+            if (game.player2 != null)
+            {
+                UserDTO user = await _userService.GetUserAsync(game.player2);
+                if (user != null){
+                    game.player2username = user.UserName;
+                }
+            }
+            if (game.player3 != null)
+            {
+                UserDTO user = await _userService.GetUserAsync(game.player3);
+                if (user != null)
+                {
+                    game.player3username = user.UserName;
+                }
+            }
+            if (game.player4 != null)
+            {
+                UserDTO user = await _userService.GetUserAsync(game.player4);
+                if (user != null)
+                {
+                    game.player4username = user.UserName;
+                }
+            }
+
             _context.Game.Add(game);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGame", new { id = game.Id }, game);
+      
         }
 
         // DELETE: api/Games/5

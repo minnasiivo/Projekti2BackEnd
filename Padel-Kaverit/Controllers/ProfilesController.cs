@@ -34,7 +34,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Profiles
+
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<ProfileDTO>>> GetAllProfiles()
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;

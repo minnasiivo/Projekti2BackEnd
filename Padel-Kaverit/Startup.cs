@@ -43,8 +43,9 @@ namespace Padel_Kaverit
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod();
-                        //policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                      policy.SetIsOriginAllowed(origin => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                      //  policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                       // policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
 
                     });
 
@@ -61,8 +62,8 @@ namespace Padel_Kaverit
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
-            //services.AddScoped<IForumPostService, ForumPostService>();
-           // services.AddScoped<IForumPostRepository, ForumRepository>();
+            services.AddScoped<IForumPostService, ForumPostService>();
+           services.AddScoped<IForumPostRepository, ForumRepository>();
             services.AddScoped<IGamesService, GamesService>();
             services.AddScoped<IGamesReposotory, GamesRepository>();
 

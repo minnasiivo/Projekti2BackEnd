@@ -21,7 +21,7 @@ namespace Padel_Kaverit.Services
 
 
 
-        public async Task<ForumPost> AddPostAsync(ForumPost forumPost, User user)
+        public async Task<ForumPost> AddPostAsync(ForumPost forumPost, string user)
         {
             forumPost.Writer = user;
 

@@ -8,7 +8,7 @@ namespace Padel_Kaverit.Models
     public class ForumPost
     {
         public long Id { get; set; }
-        public User Writer { get; set; }
+        public string Writer { get; set; } //username
         public DateTime Published { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }

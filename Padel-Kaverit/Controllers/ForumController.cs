@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Padel_Kaverit.Middleware;
 using Padel_Kaverit.Models;
+using Padel_Kaverit.Repositories;
+using Padel_Kaverit.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Controllers
@@ -14,9 +18,14 @@ namespace Padel_Kaverit.Controllers
     public class ForumController : ControllerBase
     {
         private readonly PadelContext _context;
-        public ForumController(PadelContext context)
+        private readonly IUserAuthenticationService _authenticationService;
+        private readonly IUserService _userService;
+
+        public ForumController(PadelContext context, IUserAuthenticationService authenticationService, IUserService userService)
         {
             _context = context;
+            _authenticationService = authenticationService;
+            _userService = userService;
         }
 
         // GET: api/Forum
@@ -71,6 +80,10 @@ namespace Padel_Kaverit.Controllers
         [HttpPost]
         public async Task<ActionResult<ForumPost>> PostForum(ForumPost post)
         {
+
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+            post.Writer = username;
+
             _context.ForumPosts.Add(post);
             await _context.SaveChangesAsync();
 

@@ -8,7 +8,7 @@ namespace Padel_Kaverit.Services
 {
     interface IForumPostService
     {
-        public Task<ForumPost> AddPostAsync(ForumPost forumPos, User usernamet);
+        public Task<ForumPost> AddPostAsync(ForumPost forumPos, string usernamet);
         public Task<ForumPost> UpdatePostsync(ForumPost forumPost);
         public Task<bool> RemovePostAsync(long id);
         public Task<IEnumerable<ForumPost>> GetPostsByDateAsync(DateTime date);

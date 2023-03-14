@@ -18,7 +18,7 @@ namespace Padel_Kaverit.Services
             _userRepository = userRepository;
         }
        
-        public async Task<Game> AddGameasync(Game game, User user)
+        public async Task<Game> AddGameasync(Game game, string user)
         {
             game.owner = user;
 
@@ -44,10 +44,57 @@ namespace Padel_Kaverit.Services
             return false;
         }
 
+        public async Task<GameResultsDTO> GetGameResults(string username)
+        {
+            List<Game> games =( await _repository.GetGamesForUserAsync(username)).ToList();
+            int allGames = games.Count;
+            int win = 0;
+            int loose = 0;
+            int draw = 0;
+
+            foreach (Game game in games)
+            {
+                string score = game.Score;
+
+                if (score == "voitto")
+                {
+                    if (game.owner == username) //tai player2username = username
+                    {
+                        win = +1;
+                    }else if (game.player3username == username)//tai player4username = username
+                    {
+                        loose = +1;
+                    }
+
+                } else if (score == "tappio")
+                {
+                    if (game.owner == username) //tai player2username = username
+                    {
+                        loose = +1;
+                    }
+                    else if (game.player4username == username) //tai player4username = username
+                    {
+                        win = +1;
+                    }
+                } else if (score == "tasapeli")
+                {
+                    draw = +1;
+                }
+
+            }
+
+            GameResultsDTO result = new GameResultsDTO();
+            result.win = win;
+            result.loose = loose;
+            result.draw = draw;
+
+            return result;
+
+        }
+
         public async Task<IEnumerable<Game>> GetGames()
         {
             IEnumerable<Game> games = await _repository.GetAllGamesAsync();
-            
             
             return games;
         }
