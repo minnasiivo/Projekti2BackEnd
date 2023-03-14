@@ -83,10 +83,14 @@ namespace Padel_Kaverit.Services
 
             }
 
+            double winprocent = win / allGames;
+            double looseprocent = loose / allGames;
+            double drawprocent = draw / allGames;
+
             GameResultsDTO result = new GameResultsDTO();
-            result.win = win;
-            result.loose = loose;
-            result.draw = draw;
+            result.win = winprocent;
+            result.loose = looseprocent;
+            result.draw = drawprocent;
 
             return result;
 

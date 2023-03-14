@@ -7,9 +7,9 @@ namespace Padel_Kaverit.Models
 {
     public class GameResultsDTO
     {
-        public int win { get; set; }
-        public int  loose { get; set; }
-        public int draw { get; set; }
+        public double win { get; set; }
+        public double  loose { get; set; }
+        public double draw { get; set; }
 
 
     }

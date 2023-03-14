@@ -45,6 +45,7 @@ namespace Padel_Kaverit.Controllers
 
         // GET: api/Users/5
         [HttpGet("{name}")]
+        [Authorize]
         public async Task<ActionResult<UserDTO>> GetUser(string name)
         {
             var user = await _service.GetUserAsync(name);

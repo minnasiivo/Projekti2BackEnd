@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -38,8 +39,8 @@ namespace Padel_Kaverit.Controllers
         // GET: api/Games/5
         [HttpGet("{username}")]
         public async Task<ActionResult<GameResultsDTO>> GetGame(string username)
-        { // KESKEN KESKEN KESKEN KESKEN KESKEN
-            //var game = await _service.GetGamesForUser(username);
+        { 
+          
             var game = await _service.GetGameResults(username);
 
             if (game == null)
@@ -118,16 +119,30 @@ namespace Padel_Kaverit.Controllers
         }
 
         // DELETE: api/Games/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGame(long id)
+        [HttpDelete("{game}")]
+        public async Task<IActionResult> DeleteGame(Game game)
         {
-            var game = await _context.Game.FindAsync(id);
-            if (game == null)
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+
+            if (username == game.owner)
             {
-                return NotFound();
+                _context.Game.Remove(game);
+            } else if (username == game.player2username)
+            {
+                game.player2username = null;
+                await _service.UpdateGameInfoAsync(game);
+
+            }else if (username == game.player3username)
+            {
+                game.player3username = null;
+                await _service.UpdateGameInfoAsync(game);
+            }
+            else if (username == game.player4username)
+            {
+                game.player4username = null;
+                await _service.UpdateGameInfoAsync(game);
             }
 
-            _context.Game.Remove(game);
             await _context.SaveChangesAsync();
 
             return NoContent();
