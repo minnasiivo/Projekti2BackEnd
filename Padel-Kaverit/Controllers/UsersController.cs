@@ -107,9 +107,13 @@ namespace Padel_Kaverit.Controllers
         }
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser()
         {
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+            UserDTO userToDelete =  await _service.GetUserAsync(username);
+            long id = userToDelete.Id;
+
             if (await _service.DeleteUserAsync(id));
             {
                 return Ok("Deleted");

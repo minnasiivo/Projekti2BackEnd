@@ -16,7 +16,7 @@ namespace Padel_Kaverit.Models
 
             public DbSet<User> User { get; set; }
             public DbSet<Profile> Profile { get; set; }
-            public DbSet<ForumPost> ForumPosts { get; set; }
+            public DbSet<ForumPost> ForumPost { get; set; }
 
             public DbSet<Reservation> Reservations { get; set; }
 

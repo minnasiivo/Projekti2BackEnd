@@ -17,12 +17,14 @@ namespace Padel_Kaverit.Controllers
     [ApiController]
     public class ForumController : ControllerBase
     {
+        private readonly ForumPostService _service;
         private readonly PadelContext _context;
         private readonly IUserAuthenticationService _authenticationService;
         private readonly IUserService _userService;
 
-        public ForumController(PadelContext context, IUserAuthenticationService authenticationService, IUserService userService)
+        public ForumController(ForumPostService service, PadelContext context, IUserAuthenticationService authenticationService, IUserService userService)
         {
+            _service = service;
             _context = context;
             _authenticationService = authenticationService;
             _userService = userService;
@@ -32,14 +34,14 @@ namespace Padel_Kaverit.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ForumPost>>> GetPosts()
         {
-            return await _context.ForumPosts.ToListAsync();
+            return await _context.ForumPost.ToListAsync();
         }
 
         // GET: api/Forum/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ForumPost>> GetPosts(long id)
         {
-            var post = await _context.ForumPosts.FindAsync(id);
+            var post = await _context.ForumPost.FindAsync(id);
 
             if (post == null)
             {
@@ -84,23 +86,31 @@ namespace Padel_Kaverit.Controllers
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
             post.Writer = username;
 
-            _context.ForumPosts.Add(post);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPost", new { id = post.Id }, post);
+            ForumPost newPost = await _service.AddPostAsync(post, username);
+            if (newPost != null)
+            {
+                return newPost;
+              
+            }
+            return StatusCode(666);
+
+            // _context.ForumPost.Add(post);
+            // await _context.SaveChangesAsync();
+            //return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
         // DELETE: api/Farum/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(long id)
         {
-            var post = await _context.ForumPosts.FindAsync(id);
+            var post = await _context.ForumPost.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
             }
 
-            _context.ForumPosts.Remove(post);
+            _context.ForumPost.Remove(post);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -108,7 +118,7 @@ namespace Padel_Kaverit.Controllers
 
         private bool ForumPostExists(long id)
         {
-            return _context.ForumPosts.Any(e => e.Id == id);
+            return _context.ForumPost.Any(e => e.Id == id);
         }
     }
 

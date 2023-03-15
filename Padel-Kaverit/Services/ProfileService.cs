@@ -75,7 +75,7 @@ namespace Padel_Kaverit.Services
         {
             Profile profile = await DTOToProfile(profileDTO);
 
-           Profile dbProfile = await _repository.GetProfleAsync(profile.Id);
+           Profile dbProfile = await _repository.GetProfleAsync(profileDTO.Owner);
             dbProfile.BirthDate = profile.BirthDate;
             dbProfile.Bio = profile.Bio;
             dbProfile.Skill = profile.Skill;
