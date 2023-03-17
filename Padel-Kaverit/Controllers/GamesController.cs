@@ -53,30 +53,17 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Games/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutGame(long id, Game game)
+        [HttpPut]
+        public async Task<IActionResult> PutGame(Game game)
         {
-            if (id != game.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(game).State = EntityState.Modified;
-
+            Game updatedGame = await _service.UpdateGameInfoAsync(game);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GameExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return null;
             }
 
             return NoContent();
@@ -119,7 +106,7 @@ namespace Padel_Kaverit.Controllers
         }
 
         // DELETE: api/Games/5
-        [HttpDelete("{game}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteGame(Game game)
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;

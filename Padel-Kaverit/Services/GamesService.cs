@@ -58,21 +58,21 @@ namespace Padel_Kaverit.Services
 
                 if (score == "voitto")
                 {
-                    if (game.owner == username) //tai player2username = username
+                    if (game.owner == username || game.player2username==username) // pelaajat 1&2 ovat samaa joukkuetta
                     {
                         win = +1;
-                    }else if (game.player3username == username)//tai player4username = username
+                    }else if (game.player3username == username || game.player4username == username) // pelaajat 3 & 4 samaa joukkuetta
                     {
                         loose = +1;
                     }
 
                 } else if (score == "tappio")
                 {
-                    if (game.owner == username) //tai player2username = username
+                    if (game.owner == username || game.player2username == username) 
                     {
                         loose = +1;
                     }
-                    else if (game.player4username == username) //tai player4username = username
+                    else if (game.player4username == username || game.player4username == username) //tai player4username = username
                     {
                         win = +1;
                     }
@@ -112,6 +112,25 @@ namespace Padel_Kaverit.Services
 
         public async Task<Game> UpdateGameInfoAsync(Game game)
         {
+            //Tarkista muuttuuko pelaajatiedot, siten, että nimen tilalle tulee käyttäjänimi
+            IEnumerable<User> users =await _userRepository.GetAllUsersAsync();
+            foreach (User user in users){
+
+                if (user.UserName == game.player2)
+                {
+                    game.player2username = game.player2;
+                }
+                else if (user.UserName == game.player3)
+                {
+                    game.player3username = game.player3;
+                }
+                else if (user.UserName == game.player4)
+                {
+                    game.player4username = game.player4;
+                }
+
+            }
+
             Game dbGame = await _repository.GetGameAsync(game.Id);
             dbGame.owner = game.owner;
             dbGame.player2 = game.player2;

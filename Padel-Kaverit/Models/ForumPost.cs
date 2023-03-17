@@ -12,7 +12,7 @@ namespace Padel_Kaverit.Models
         public DateTime Published { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-       // public ForumAnswer Answers {get; set;}
+      
        
 
     }
