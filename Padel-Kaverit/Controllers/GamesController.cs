@@ -30,6 +30,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Games
+        /// <summary>
+        /// Gets list of games
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetGame()
         {
@@ -38,6 +41,12 @@ namespace Padel_Kaverit.Controllers
 
         // GET: api/Games/5
         [HttpGet("{username}")]
+        /// <summary>
+        /// Gets game results for user
+        /// </summary>
+        /// <param name="name">user's username</param>
+        /// <returns>game statistics as json</returns>
+        /// <response code="404">game results not found</response>
         public async Task<ActionResult<GameResultsDTO>> GetGame(string username)
         { 
           
@@ -53,6 +62,9 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Games/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        ///change game information
+        /// </summary>
         [HttpPut]
         public async Task<IActionResult> PutGame(Game game)
         {
@@ -71,6 +83,9 @@ namespace Padel_Kaverit.Controllers
 
         // POST: api/Games
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Add info of a new game to database
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Game>> PostGame(Game game)
         {
@@ -106,6 +121,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // DELETE: api/Games/5
+        /// <summary>
+        /// Delete game results for user
+        /// </summary>
         [HttpDelete]
         public async Task<IActionResult> DeleteGame(Game game)
         {

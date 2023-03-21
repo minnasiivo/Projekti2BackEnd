@@ -34,8 +34,15 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Profiles
-
+        /// <summary>
+        /// Gets profile information for  users
+        /// </summary>
+        /// <returns>User list as json</returns>
+        /// <response code="200">Profile found</response>
+        /// <response code="404">Profile not found</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json")]
         [Authorize]
         public async Task<ActionResult<IEnumerable<ProfileDTO>>> GetAllProfiles()
         {
@@ -45,7 +52,13 @@ namespace Padel_Kaverit.Controllers
 
         }
 
-
+        /// <summary>
+        /// Gets profile information for  one user
+        /// </summary>
+        /// <param name="username">user's username</param>
+        /// <returns>User information as json</returns>
+        /// <response code="200">User found</response>
+        /// <response code="404">User not found</response>
         [HttpGet("{string}")]
         public async Task<ActionResult<ProfileDTO>> GetProfile(string username)
         {
@@ -60,6 +73,13 @@ namespace Padel_Kaverit.Controllers
         }
 
         //GET: api/Profiles/5
+        /// <summary>
+        /// Gets profile information for  one user
+        /// </summary>
+        /// <param name="id">users id</param>
+        /// <returns>User information as json</returns>
+        /// <response code="200">User found</response>
+        /// <response code="404">User not found</response>
         [HttpGet("{id}")]
         public async Task<ActionResult<ProfileDTO>> GetProfile(long id)
         {
@@ -80,8 +100,11 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Profiles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-       [HttpPut]
-       //[HttpPut("{userName}")]
+        /// <summary>
+        /// change profile information for user
+        /// </summary>
+        [HttpPut]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> PutProfile(ProfileDTO profile)
         {
@@ -117,6 +140,9 @@ namespace Padel_Kaverit.Controllers
 
         // POST: api/Profiles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// change profile information for user
+        /// </summary>
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<ProfileDTO>> PostProfile(ProfileDTO profile)
@@ -146,8 +172,12 @@ namespace Padel_Kaverit.Controllers
 
 
 
-// DELETE: api/Profiles/5
-[HttpDelete("{id}")]
+        // DELETE: api/Profiles/5
+        /// <summary>
+        /// delete users user profile
+        /// </summary>
+        [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteProfile(long id)
         {
             var profile = await _context.Profile.FindAsync(id);

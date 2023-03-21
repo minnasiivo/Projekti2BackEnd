@@ -32,6 +32,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Reservations
+        /// <summary>
+        /// Get list of all reservations
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
@@ -39,6 +42,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Reservations/5
+        /// <summary>
+        /// Get reservations based on reservation id
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Reservation>> GetReservation(long id)
         {
@@ -53,6 +59,9 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Reservations/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// change reservation information
+        /// </summary>
         [HttpPut]
         // [HttpPut("{id}")]
         public async Task<IActionResult> PutReservation(ReservationDTO reservation)
@@ -76,6 +85,11 @@ namespace Padel_Kaverit.Controllers
             return NoContent(); ;
         }
 
+
+
+        /// <summary>
+        /// Make reservation to calendar
+        /// </summary>
         // POST: api/Reservations
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -98,6 +112,11 @@ namespace Padel_Kaverit.Controllers
             return CreatedAtAction("GetReservation", new { id = reservation.Id }, reservation);
         }
 
+
+
+        /// <summary>
+        /// Delete reservation
+        /// </summary>
         // DELETE: api/Reservations/5
         [HttpDelete]
         //[HttpDelete("{id}")]
