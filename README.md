@@ -10,5 +10,10 @@ Rajapinta vastaa verkkosivulta tuleviin HTTP kyselyihin ja hakee niiden perustee
 Rajapinnan ominaisuudet ja funkitiot dokumentoidaan swaggerin avulla.
 
 Api toimii Azure alustalla samoin kuin sen käyttämä tietokanta.
+Rajapinta kutsut tehdään osoitteeseen:
+https://padel-kaveritapi.azurewebsites.net/api/
+
+
+![Alt text](kuvia/forum.png "Forum")
 
 Tämän upean koodin ovat luoneet Minna Siivo ja Aurora Särkkä projektityö 2 -kurssilla.
