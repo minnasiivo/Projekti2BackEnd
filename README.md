@@ -15,12 +15,17 @@ https://padel-kaveritapi.azurewebsites.net/api/
 
 User controllerin funktiot:
 ![Alt text](kuvia/users.png "Users")
+
+
 Profiles controllerin funkitiot:
 ![Alt text](kuvia/profiles.png "Profiles")
+
 Games controllerin funkitiot:
 ![Alt text](kuvia/games.png "Games")
+
 Reservations controllerin funkitiot:
 ![Alt text](kuvia/reservations.png "Reservations")
+
 Forum controllerin funkitiot:
 ![Alt text](kuvia/forum.png "Forum")
 
