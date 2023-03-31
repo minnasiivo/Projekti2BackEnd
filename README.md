@@ -21,7 +21,7 @@ Profiles controllerin funkitiot:
 ![Alt text](kuvia/profiles.png "Profiles")
 
 Games controllerin funkitiot:
-![Alt text](kuvia/games.png "Games")
+![Alt text](kuvia/Games.png "Games")
 
 Reservations controllerin funkitiot:
 ![Alt text](kuvia/reservations.png "Reservations")
