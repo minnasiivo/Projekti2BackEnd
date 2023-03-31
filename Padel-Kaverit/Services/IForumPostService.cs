@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Padel_Kaverit.Services
 {
-    interface IForumPostService
+    public interface IForumPostService
     {
         public Task<ForumPost> AddPostAsync(ForumPost forumPos, string usernamet);
         public Task<ForumPost> UpdatePostsync(ForumPost forumPost);

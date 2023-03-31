@@ -4,6 +4,31 @@
         <name>Padel-Kaverit</name>
     </assembly>
     <members>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.GetPosts">
+            <summary>
+            Gets all forum posts
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.GetPosts(System.Int64)">
+            <summary>
+            Gets one forum post by id
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.PutPost(System.Int64,Padel_Kaverit.Models.ForumPost)">
+            <summary>
+            Change post 
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.PostForum(Padel_Kaverit.Models.ForumPost)">
+             <summary>
+            Post to forum
+             </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.DeletePost(System.Int64)">
+             <summary>
+            Delete post from forum
+             </summary>
+        </member>
         <member name="M:Padel_Kaverit.Controllers.GamesController.GetGame">
             <summary>
             Gets list of games
@@ -106,6 +131,7 @@
             <returns>User information as json</returns>
             <response code="200">User found</response>
             <response code="404">User not found</response>
+            /// <response code="500">!?!?!!?!?!?!?!</response>
         </member>
         <member name="M:Padel_Kaverit.Controllers.UsersController.PutUser(Padel_Kaverit.Models.UserDTO)">
             <summary>

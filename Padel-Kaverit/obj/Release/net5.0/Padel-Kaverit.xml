@@ -4,15 +4,153 @@
         <name>Padel-Kaverit</name>
     </assembly>
     <members>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.GetPosts">
+            <summary>
+            Gets all forum posts
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.GetPosts(System.Int64)">
+            <summary>
+            Gets one forum post by id
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.PutPost(System.Int64,Padel_Kaverit.Models.ForumPost)">
+            <summary>
+            Change post 
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.PostForum(Padel_Kaverit.Models.ForumPost)">
+             <summary>
+            Post to forum
+             </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.DeletePost(System.Int64)">
+             <summary>
+            Delete post from forum
+             </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.GamesController.GetGame">
+            <summary>
+            Gets list of games
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.GamesController.PutGame(Padel_Kaverit.Models.Game)">
+             <summary>
+            change game information
+             </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.GamesController.PostGame(Padel_Kaverit.Models.Game)">
+            <summary>
+            Add info of a new game to database
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.GamesController.DeleteGame(Padel_Kaverit.Models.Game)">
+            <summary>
+            Delete game results for user
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ProfilesController.GetAllProfiles">
+            <summary>
+            Gets profile information for  users
+            </summary>
+            <returns>User list as json</returns>
+            <response code="200">Profile found</response>
+            <response code="404">Profile not found</response>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ProfilesController.GetProfile(System.String)">
+            <summary>
+            Gets profile information for  one user
+            </summary>
+            <param name="username">user's username</param>
+            <returns>User information as json</returns>
+            <response code="200">User found</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ProfilesController.GetProfile(System.Int64)">
+            <summary>
+            Gets profile information for  one user
+            </summary>
+            <param name="id">users id</param>
+            <returns>User information as json</returns>
+            <response code="200">User found</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ProfilesController.PutProfile(Padel_Kaverit.Models.ProfileDTO)">
+            <summary>
+            change profile information for user
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ProfilesController.PostProfile(Padel_Kaverit.Models.ProfileDTO)">
+            <summary>
+            change profile information for user
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ProfilesController.DeleteProfile(System.Int64)">
+            <summary>
+            delete users user profile
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ReservationsController.GetReservations">
+            <summary>
+            Get list of all reservations
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ReservationsController.GetReservation(System.Int64)">
+            <summary>
+            Get reservations based on reservation id
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ReservationsController.PutReservation(Padel_Kaverit.Models.ReservationDTO)">
+            <summary>
+            change reservation information
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ReservationsController.PostReservation(Padel_Kaverit.Models.ReservationDTO)">
+            <summary>
+            Make reservation to calendar
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.ReservationsController.DeleteReservation(Padel_Kaverit.Models.ReservationDTO)">
+            <summary>
+            Delete reservation
+            </summary>
+        </member>
         <member name="M:Padel_Kaverit.Controllers.UsersController.GetUsers">
             <summary>
             Gets a list af all users
             </summary>
-            <returns></returns>
+            <returns>List of registered users as json</returns>
+            <response code="200">List found</response>
+            <response code="404">List not found</response>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.UsersController.GetUser(System.String)">
+            <summary>
+            Gets information of one user
+            </summary>
+            <param name="name">user's username</param>
+            <returns>User information as json</returns>
+            <response code="200">User found</response>
+            <response code="404">User not found</response>
+            /// <response code="500">!?!?!!?!?!?!?!</response>
         </member>
         <member name="M:Padel_Kaverit.Controllers.UsersController.PutUser(Padel_Kaverit.Models.UserDTO)">
             <summary>
             Edit user
+            </summary>
+            <returns>'ok' when changes are saved</returns>
+            <response code="200">changes saved</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.UsersController.PostUser(Padel_Kaverit.Models.User)">
+            <summary>
+            Register new user
+            </summary>
+            <returns>User information as json</returns>
+            <response code="200">User added</response>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.UsersController.DeleteUser">
+            <summary>
+            Delete user 
             </summary>
         </member>
     </members>

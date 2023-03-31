@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Padel_Kaverit.Middleware;
@@ -17,12 +18,12 @@ namespace Padel_Kaverit.Controllers
     [ApiController]
     public class ForumController : ControllerBase
     {
-        private readonly ForumPostService _service;
+        private readonly IForumPostService _service;
         private readonly PadelContext _context;
         private readonly IUserAuthenticationService _authenticationService;
         private readonly IUserService _userService;
 
-        public ForumController(ForumPostService service, PadelContext context, IUserAuthenticationService authenticationService, IUserService userService)
+        public ForumController(IForumPostService service, PadelContext context, IUserAuthenticationService authenticationService, IUserService userService)
         {
             _service = service;
             _context = context;
@@ -31,6 +32,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Forum
+        /// <summary>
+        /// Gets all forum posts
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ForumPost>>> GetPosts()
         {
@@ -38,6 +42,9 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Forum/5
+        /// <summary>
+        /// Gets one forum post by id
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<ForumPost>> GetPosts(long id)
         {
@@ -53,9 +60,18 @@ namespace Padel_Kaverit.Controllers
 
         // PUT: api/Forum/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Change post 
+        /// </summary>
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutPost(long id, ForumPost post)
         {
+
+            // Pitää tarkistaa, että muokata vain omia postauksiaan 
+            //tai admin oikeuksilla saa muokata kaikkia
+
+
             if (id != post.Id)
             {
                 return BadRequest();
@@ -79,7 +95,11 @@ namespace Padel_Kaverit.Controllers
 
         // POST: api/Forum
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        ///Post to forum
+        /// </summary>
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ForumPost>> PostForum(ForumPost post)
         {
 
@@ -101,9 +121,15 @@ namespace Padel_Kaverit.Controllers
         }
 
         // DELETE: api/Farum/5
+        /// <summary>
+        ///Delete post from forum
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(long id)
         {
+            // Pitää tarkistaa, että poistaa vain omia postauksiaan 
+            //tai admin oikeuksilla saa poistaa kaikkia
+
             var post = await _context.ForumPost.FindAsync(id);
             if (post == null)
             {

@@ -17,7 +17,7 @@ namespace Padel_Kaverit.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        //private readonly PadelContext _context;
+        private readonly PadelContext _context;
         private readonly IUserService _service;
         private readonly IUserAuthenticationService _UserAuthenticationService;
 
@@ -40,7 +40,8 @@ namespace Padel_Kaverit.Controllers
          /// <response code="200">List found</response>
         /// <response code="404">List not found</response>
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
+     //   [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
@@ -59,6 +60,7 @@ namespace Padel_Kaverit.Controllers
         /// <returns>User information as json</returns>
         /// <response code="200">User found</response>
         /// <response code="404">User not found</response>
+        /// /// <response code="500">!?!?!!?!?!?!?!</response>
 
         [HttpGet("{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -43,13 +43,12 @@ namespace Padel_Kaverit.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Produces("application/json")]
-        [Authorize]
+       // [Authorize]
         public async Task<ActionResult<IEnumerable<ProfileDTO>>> GetAllProfiles()
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
             return Ok(await _service.GetAllProfilesAsync());
           
-
         }
 
         /// <summary>
@@ -59,7 +58,7 @@ namespace Padel_Kaverit.Controllers
         /// <returns>User information as json</returns>
         /// <response code="200">User found</response>
         /// <response code="404">User not found</response>
-        [HttpGet("{string}")]
+        [HttpGet("{username}")]
         public async Task<ActionResult<ProfileDTO>> GetProfile(string username)
         {
 
