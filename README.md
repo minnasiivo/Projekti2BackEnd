@@ -13,7 +13,15 @@ Api toimii Azure alustalla samoin kuin sen käyttämä tietokanta.
 Rajapinta kutsut tehdään osoitteeseen:
 https://padel-kaveritapi.azurewebsites.net/api/
 
-
+User controllerin funktiot:
+![Alt text](kuvia/users.png "Users")
+Profiles controllerin funkitiot:
+![Alt text](kuvia/profiles.png "Profiles")
+Games controllerin funkitiot:
+![Alt text](kuvia/games.png "Games")
+Reservations controllerin funkitiot:
+![Alt text](kuvia/reservations.png "Reservations")
+Forum controllerin funkitiot:
 ![Alt text](kuvia/forum.png "Forum")
 
 Tämän upean koodin ovat luoneet Minna Siivo ja Aurora Särkkä projektityö 2 -kurssilla.
