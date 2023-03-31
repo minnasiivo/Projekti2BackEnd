@@ -21,12 +21,17 @@ Profiles controllerin funkitiot:
 ![Alt text](kuvia/profiles.png "Profiles")
 
 Games controllerin funkitiot:
+
 ![Alt text](kuvia/Games.png "Games")
 
 Reservations controllerin funkitiot:
+
 ![Alt text](kuvia/reservations.png "Reservations")
 
 Forum controllerin funkitiot:
+
 ![Alt text](kuvia/forum.png "Forum")
+
+
 
 Tämän upean koodin ovat luoneet Minna Siivo ja Aurora Särkkä projektityö 2 -kurssilla.
