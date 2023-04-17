@@ -37,13 +37,15 @@ namespace Padel_Kaverit.Controllers
         /// Gets a list af all users
         /// </summary>
         /// <returns>List of registered users as json</returns>
-         /// <response code="200">List found</response>
+        /// <response code="200">List found</response>
         /// <response code="404">List not found</response>
+        ///  /// <response code="401">Not good</response>
         [HttpGet]
         [Authorize]
      //   [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return Ok(await _service.GetAllUsersAsync());

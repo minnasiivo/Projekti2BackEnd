@@ -34,6 +34,14 @@
             Gets list of games
             </summary>
         </member>
+        <member name="M:Padel_Kaverit.Controllers.GamesController.GetGame(System.String)">
+            <summary>
+            Gets game results for user
+            </summary>
+            <param name="name">user's username</param>
+            <returns>game statistics as json</returns>
+            <response code="404">game results not found</response>
+        </member>
         <member name="M:Padel_Kaverit.Controllers.GamesController.PutGame(Padel_Kaverit.Models.Game)">
              <summary>
             change game information
@@ -65,15 +73,7 @@
             <returns>User information as json</returns>
             <response code="200">User found</response>
             <response code="404">User not found</response>
-        </member>
-        <member name="M:Padel_Kaverit.Controllers.ProfilesController.GetProfile(System.Int64)">
-            <summary>
-            Gets profile information for  one user
-            </summary>
-            <param name="id">users id</param>
-            <returns>User information as json</returns>
-            <response code="200">User found</response>
-            <response code="404">User not found</response>
+            
         </member>
         <member name="M:Padel_Kaverit.Controllers.ProfilesController.PutProfile(Padel_Kaverit.Models.ProfileDTO)">
             <summary>
@@ -122,6 +122,7 @@
             <returns>List of registered users as json</returns>
             <response code="200">List found</response>
             <response code="404">List not found</response>
+             /// <response code="401">Not good</response>
         </member>
         <member name="M:Padel_Kaverit.Controllers.UsersController.GetUser(System.String)">
             <summary>

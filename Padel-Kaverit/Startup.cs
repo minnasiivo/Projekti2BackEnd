@@ -40,15 +40,16 @@ namespace Padel_Kaverit
         {
             services.AddCors(options =>
             {
+
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                      policy.SetIsOriginAllowed(origin => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-                      //  policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
-                       // policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
-
+                     policy.SetIsOriginAllowed(origin => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                       policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+                       
                     });
-
+              
             });
 
 
@@ -101,7 +102,7 @@ namespace Padel_Kaverit
             app.UseAzureAppConfiguration();
 
             app.UseRouting();
-            app.UseCors();
+          app.UseCors();
             
            app.UseMiddleware<ApiKeyMiddleware>();
            app.UseAuthentication();

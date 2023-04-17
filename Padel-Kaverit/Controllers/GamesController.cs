@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,13 +41,14 @@ namespace Padel_Kaverit.Controllers
         }
 
         // GET: api/Games/5
-        [HttpGet("{username}")]
         /// <summary>
         /// Gets game results for user
         /// </summary>
         /// <param name="name">user's username</param>
         /// <returns>game statistics as json</returns>
         /// <response code="404">game results not found</response>
+        [HttpGet("{username}")]
+        [Authorize]
         public async Task<ActionResult<GameResultsDTO>> GetGame(string username)
         { 
           

@@ -46,17 +46,18 @@ namespace Padel_Kaverit.Services
 
         public async Task<GameResultsDTO> GetGameResults(string username)
         {
+            Double win = 0;
+            Double loose = 0;
+            Double draw = 0;
             List<Game> games =( await _repository.GetGamesForUserAsync(username)).ToList();
-            int allGames = games.Count;
-            int win = 0;
-            int loose = 0;
-            int draw = 0;
+            Double allGames = games.Count;
+
 
             foreach (Game game in games)
             {
                 string score = game.Score;
 
-                if (score == "voitto")
+                if (score == "Voitto")
                 {
                     if (game.owner == username || game.player2username==username) // pelaajat 1&2 ovat samaa joukkuetta
                     {
@@ -66,26 +67,26 @@ namespace Padel_Kaverit.Services
                         loose = +1;
                     }
 
-                } else if (score == "tappio")
+                } else if (score == "Tappio")
                 {
                     if (game.owner == username || game.player2username == username) 
                     {
                         loose = +1;
                     }
-                    else if (game.player4username == username || game.player4username == username) //tai player4username = username
+                    else if (game.player4username == username || game.player3username == username) 
                     {
                         win = +1;
                     }
-                } else if (score == "tasapeli")
+                } else if (score == "Tasapeli")
                 {
                     draw = +1;
                 }
 
             }
-
-            double winprocent = win / allGames;
-            double looseprocent = loose / allGames;
-            double drawprocent = draw / allGames;
+            
+            Double winprocent = (win/allGames)*100;
+            Double looseprocent = (loose/allGames)*100;
+            Double drawprocent = (draw/allGames)*100;
 
             GameResultsDTO result = new GameResultsDTO();
             result.win = winprocent;

@@ -58,7 +58,10 @@ namespace Padel_Kaverit.Controllers
         /// <returns>User information as json</returns>
         /// <response code="200">User found</response>
         /// <response code="404">User not found</response>
+        /// 
         [HttpGet("{username}")]
+       // [Authorize]
+
         public async Task<ActionResult<ProfileDTO>> GetProfile(string username)
         {
 
@@ -70,7 +73,7 @@ namespace Padel_Kaverit.Controllers
 
             return Ok(profileDTO);
         }
-
+        /*
         //GET: api/Profiles/5
         /// <summary>
         /// Gets profile information for  one user
@@ -80,7 +83,7 @@ namespace Padel_Kaverit.Controllers
         /// <response code="200">User found</response>
         /// <response code="404">User not found</response>
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProfileDTO>> GetProfile(long id)
+        public async Task<ActionResult<ProfileDTO>> GetProfileById(long id)
         {
 
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
@@ -96,6 +99,7 @@ namespace Padel_Kaverit.Controllers
 
             return Ok (profileDTO);
         }
+        */
 
         // PUT: api/Profiles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
