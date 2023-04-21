@@ -61,25 +61,25 @@ namespace Padel_Kaverit.Services
                 {
                     if (game.owner == username || game.player2username==username) // pelaajat 1&2 ovat samaa joukkuetta
                     {
-                        win = +1;
+                        win = win +1;
                     }else if (game.player3username == username || game.player4username == username) // pelaajat 3 & 4 samaa joukkuetta
                     {
-                        loose = +1;
+                        loose = loose+1;
                     }
 
                 } else if (score == "Tappio")
                 {
                     if (game.owner == username || game.player2username == username) 
                     {
-                        loose = +1;
+                        loose =loose +1;
                     }
                     else if (game.player4username == username || game.player3username == username) 
                     {
-                        win = +1;
+                        win = win+1;
                     }
                 } else if (score == "Tasapeli")
                 {
-                    draw = +1;
+                    draw = draw+1;
                 }
 
             }

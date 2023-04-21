@@ -67,6 +67,7 @@ namespace Padel_Kaverit.Controllers
         [HttpGet("{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Produces("application/json")]
+        [Authorize]
         public async Task<ActionResult<UserDTO>> GetUser(string name)
         {
             var user = await _service.GetUserAsync(name);
@@ -88,6 +89,7 @@ namespace Padel_Kaverit.Controllers
         /// <response code="200">changes saved</response>
         /// <response code="404">User not found</response>
         [HttpPut]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> PutUser(UserDTO user)
         {
@@ -140,6 +142,7 @@ namespace Padel_Kaverit.Controllers
         /// Delete user 
         /// </summary>
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteUser()
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
@@ -153,6 +156,25 @@ namespace Padel_Kaverit.Controllers
             return NotFound();
         }
 
+       // DELETE: api/Users/
+        /// <summary>
+        /// Delete users by Admin user
+        /// </summary>
+        [HttpDelete("{username}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminDeleteUser(string username)
+        {
+            
+            UserDTO userToDelete = await _service.GetUserAsync(username);
+            long id = userToDelete.Id;
+
+            if (await _service.DeleteUserAsync(id)) ;
+            {
+                return Ok("Deleted");
+            }
+            return NotFound();
+        }
+     
 
     }
 }

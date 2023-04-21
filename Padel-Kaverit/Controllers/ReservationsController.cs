@@ -36,6 +36,7 @@ namespace Padel_Kaverit.Controllers
         /// Get list of all reservations
         /// </summary>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
             return Ok(await _service.GetAllReservations());
@@ -45,10 +46,12 @@ namespace Padel_Kaverit.Controllers
         /// <summary>
         /// Get reservations based on reservation id
         /// </summary>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(long id)
+        [HttpGet("{username}")]
+        [Authorize]
+      
+        public async Task<ActionResult<Reservation>> GetReservation(string username)
         {
-            var reservation = await _service.GetReservation(id);
+            var reservation = await _service.GetReservationForUser(username);
             if (reservation == null)
             {
                 return NotFound();
@@ -63,13 +66,10 @@ namespace Padel_Kaverit.Controllers
         /// change reservation information
         /// </summary>
         [HttpPut]
-        // [HttpPut("{id}")]
+        
         public async Task<IActionResult> PutReservation(ReservationDTO reservation)
         {
-            // if (id != reservation.Id)
-            // {
-            //   return BadRequest();
-            //}
+     
 
 
             ReservationDTO updateReservation = await _service.UpdateReservation(reservation);
@@ -97,7 +97,7 @@ namespace Padel_Kaverit.Controllers
         public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservation)
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
-           // ReservationDTO newReservation = await _service.CreateReservation(reservation);
+          
 
             bool isAllowed = await _authenticationService.IsAllowed(this.User.FindFirst(ClaimTypes.Name).Value, reservation);
             if (!isAllowed)
@@ -119,7 +119,8 @@ namespace Padel_Kaverit.Controllers
         /// </summary>
         // DELETE: api/Reservations/5
         [HttpDelete]
-        //[HttpDelete("{id}")]
+        [Authorize]
+      
         public async Task<IActionResult> DeleteReservation(ReservationDTO reservationDTO)
         {
 

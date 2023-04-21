@@ -43,7 +43,7 @@ namespace Padel_Kaverit.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Produces("application/json")]
-       // [Authorize]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<ProfileDTO>>> GetAllProfiles()
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
@@ -60,7 +60,7 @@ namespace Padel_Kaverit.Controllers
         /// <response code="404">User not found</response>
         /// 
         [HttpGet("{username}")]
-       // [Authorize]
+       [Authorize]
 
         public async Task<ActionResult<ProfileDTO>> GetProfile(string username)
         {
@@ -73,33 +73,7 @@ namespace Padel_Kaverit.Controllers
 
             return Ok(profileDTO);
         }
-        /*
-        //GET: api/Profiles/5
-        /// <summary>
-        /// Gets profile information for  one user
-        /// </summary>
-        /// <param name="id">users id</param>
-        /// <returns>User information as json</returns>
-        /// <response code="200">User found</response>
-        /// <response code="404">User not found</response>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProfileDTO>> GetProfileById(long id)
-        {
-
-            string username = this.User.FindFirst(ClaimTypes.Name).Value;
-
-            //  var profile = await _context.Profile.FindAsync(id);
-            //var profile = await _service.GetProfleAsync(id);
-            ProfileDTO profileDTO = await _service.GetProfleAsync(id);
-
-            if (profileDTO == null)
-            {
-                return NotFound();
-            }
-
-            return Ok (profileDTO);
-        }
-        */
+  
 
         // PUT: api/Profiles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -122,21 +96,6 @@ namespace Padel_Kaverit.Controllers
             ProfileDTO updateProfile = await _service.UpdateProfileAsync(profile);
 
 
-           /* try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProfileExists(profile.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }*/
 
             return NoContent();
         }

@@ -98,7 +98,7 @@ namespace Padel_Kaverit.Controllers
         /// <summary>
         ///Post to forum
         /// </summary>
-        [HttpPost]
+        [HttpPost("{username}")]
         [Authorize]
         public async Task<ActionResult<ForumPost>> PostForum(ForumPost post)
         {
@@ -113,22 +113,57 @@ namespace Padel_Kaverit.Controllers
                 return newPost;
               
             }
-            return StatusCode(666);
+            return StatusCode(502);
 
-            // _context.ForumPost.Add(post);
-            // await _context.SaveChangesAsync();
-            //return CreatedAtAction("GetPost", new { id = post.Id }, post);
+      
         }
 
-        // DELETE: api/Farum/5
+        // DELETE: api/Farum/
         /// <summary>
         ///Delete post from forum
         /// </summary>
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Authorize]
+      
         public async Task<IActionResult> DeletePost(long id)
         {
-            // Pitää tarkistaa, että poistaa vain omia postauksiaan 
-            //tai admin oikeuksilla saa poistaa kaikkia
+          //  tarkistaa, että poistaa vain omia postauksiaan 
+            
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+
+            var post = await _context.ForumPost.FindAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            if (post.Writer == username )
+            {
+
+                _context.ForumPost.Remove(post);
+                await _context.SaveChangesAsync();
+            }
+
+            return NoContent();
+        }
+
+        private bool ForumPostExists(long id)
+        {
+            return _context.ForumPost.Any(e => e.Id == id);
+        }
+
+
+
+        // DELETE: api/Farum/5
+        /// <summary>
+        ///Delete post from forum by Admin user
+        /// </summary>
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminDeleteAnyPosts(long id)
+        {
+            
+            //admin oikeuksilla saa poistaa kaikkia
 
             var post = await _context.ForumPost.FindAsync(id);
             if (post == null)
@@ -142,10 +177,11 @@ namespace Padel_Kaverit.Controllers
             return NoContent();
         }
 
-        private bool ForumPostExists(long id)
+        private bool PostExists(long id)
         {
             return _context.ForumPost.Any(e => e.Id == id);
         }
+
     }
 
 }

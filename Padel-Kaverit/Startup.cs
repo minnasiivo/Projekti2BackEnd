@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using WebApplication1.Middleware;
 
+
 namespace Padel_Kaverit
 {
     public class Startup
@@ -45,8 +46,8 @@ namespace Padel_Kaverit
                     policy =>
                     {
                      policy.SetIsOriginAllowed(origin => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-                        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
-                       policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+                    //    policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                      // policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
                        
                     });
               
@@ -87,15 +88,15 @@ namespace Padel_Kaverit
 
         }
 
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-            public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PadelContext db)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PadelContext db)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            if (env.IsDevelopment()) { 
+
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
             db.Database.EnsureCreated();
             app.UseHttpsRedirection();

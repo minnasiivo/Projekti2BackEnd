@@ -32,12 +32,16 @@ namespace Padel_Kaverit.Controllers
 
         // GET: api/Games
         /// <summary>
-        /// Gets list of games
+        /// Gets list of users games
         /// </summary>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Game>>> GetGame()
         {
-            return await _context.Game.ToListAsync();
+            string username = this.User.FindFirst(ClaimTypes.Name).Value;
+            var games = await _service.GetGamesForUser(username);
+            return Ok(games);
+       
         }
 
         // GET: api/Games/5
@@ -62,12 +66,18 @@ namespace Padel_Kaverit.Controllers
             return game;
         }
 
+
+
+
+
+
         // PUT: api/Games/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
         ///change game information
         /// </summary>
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> PutGame(Game game)
         {
             Game updatedGame = await _service.UpdateGameInfoAsync(game);
@@ -89,6 +99,7 @@ namespace Padel_Kaverit.Controllers
         /// Add info of a new game to database
         /// </summary>
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Game>> PostGame(Game game)
         {
             if (game.player2 != null)
@@ -127,6 +138,7 @@ namespace Padel_Kaverit.Controllers
         /// Delete game results for user
         /// </summary>
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteGame(Game game)
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;

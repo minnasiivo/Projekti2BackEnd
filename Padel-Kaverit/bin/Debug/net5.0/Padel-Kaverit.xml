@@ -29,9 +29,14 @@
             Delete post from forum
              </summary>
         </member>
+        <member name="M:Padel_Kaverit.Controllers.ForumController.AdminDeleteAnyPosts(System.Int64)">
+             <summary>
+            Delete post from forum by Admin user
+             </summary>
+        </member>
         <member name="M:Padel_Kaverit.Controllers.GamesController.GetGame">
             <summary>
-            Gets list of games
+            Gets list of users games
             </summary>
         </member>
         <member name="M:Padel_Kaverit.Controllers.GamesController.GetGame(System.String)">
@@ -95,7 +100,7 @@
             Get list of all reservations
             </summary>
         </member>
-        <member name="M:Padel_Kaverit.Controllers.ReservationsController.GetReservation(System.Int64)">
+        <member name="M:Padel_Kaverit.Controllers.ReservationsController.GetReservation(System.String)">
             <summary>
             Get reservations based on reservation id
             </summary>
@@ -152,6 +157,11 @@
         <member name="M:Padel_Kaverit.Controllers.UsersController.DeleteUser">
             <summary>
             Delete user 
+            </summary>
+        </member>
+        <member name="M:Padel_Kaverit.Controllers.UsersController.AdminDeleteUser(System.String)">
+            <summary>
+            Delete users by Admin user
             </summary>
         </member>
     </members>
